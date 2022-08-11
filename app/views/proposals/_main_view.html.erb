@@ -1,0 +1,59 @@
+<div class="main_view">
+  <div class="main_top">
+    <div class="order_title">新着順</div>
+  </div>
+  <div class="main_contents">
+    <div class="proposal">
+      <div class="detail">
+        <div class="image">
+          画像
+        </div>
+        <div class="text">
+          <div class="where">where</div>
+          <div class="what">what</div>
+          <div class="why">why</div>
+          <div class="how">how</div>
+        </div>
+      </div>
+      <div class="current">
+        <span>current</span>
+        <div class="numeric">作業時間_____s</div>
+        <span>x</span>
+        <div class="numeric">作業人数_____人</div>
+        <span>x</span>
+        <div class="numeric">年間作業日数_____日</div>
+        <span>=</span>
+        <div class="numeric">年間工数_____h</div>
+        <span>x</span>
+        <div class="numeric">時給_____円</div>
+        <span>=</span>
+        <div class="numeric">年間コスト_____円</div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="estimation">
+        <span>estimation</span>
+        <div class="numeric">作業時間_____s</div>
+        <span>x</span>
+        <div class="numeric">作業人数_____人</div>
+        <span>x</span>
+        <div class="numeric">年間作業日数_____日</div>
+        <span>=</span>
+        <div class="numeric">年間工数_____h</div>
+        <span>x</span>
+        <div class="numeric">時給_____円</div>
+        <span>=</span>
+        <div class="numeric">年間コスト_____円</div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="calc_result">
+        <div class="reduced_man_hours">年間削減工数_____h</div>
+        <div class="reduced_costs">年間削減コスト_____円</div>
+      </div>
+      <div class="various_btn">
+        <%= link_to "削除", root_path , class: :action_btn%>
+        <%= link_to "編集", root_path , class: :action_btn%>
+        <%= link_to "実施", root_path , class: :action_btn%>
+      </div>
+    </div>
+  </div>
+</div>
