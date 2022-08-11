@@ -110,7 +110,7 @@ header {
 .main_contents {
   width: 100%;
   height: calc(100vh - 100px - 50px);
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .proposal {
@@ -131,7 +131,7 @@ header {
 }
 
 .text {
-  overflow: scroll;
+  overflow-y: scroll;
   border: 1px solid black;
   width: 300px;
 }
