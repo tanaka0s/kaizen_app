@@ -17,6 +17,10 @@ div {
   padding: 0;
 }
 
+/******************************************************** 
+  ヘッダー
+********************************************************/
+
 header {
   background-color: #f1f8fe;
   height: 100px;
@@ -58,6 +62,9 @@ header {
   font-size: 16px;
 }
 
+/******************************************************** 
+  トップページ
+********************************************************/
 .wrapper {
   display: flex;
 }
@@ -179,4 +186,12 @@ header {
 .action_btn {
   padding: 5px;
   text-decoration: none;
+}
+
+#hide_before_man_hours,#hide_before_costs,#hide_after_man_hours
+,#hide_after_costs,#hide_hourly_wage,#hide_reduced_man_hours
+,#hide_reduced_costs {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 50px;
+  display: inline-block;
 }
