@@ -21,7 +21,7 @@ class ProposalsController < ApplicationController
   private
 
   def proposal_params
-    params.require(:proposal_estimation).permit(:image, :where, :what, :why, :how, :before_seconds, :before_workers, :before_days, :before_man_hours, :hourly_wage, :before_costs,
+    params.require(:proposal_estimation).permit(:image, :title, :where, :what, :why, :how, :before_seconds, :before_workers, :before_days, :before_man_hours, :hourly_wage, :before_costs,
                                                 :after_seconds, :after_workers, :after_days, :after_man_hours, :after_costs, :reduced_man_hours, :reduced_costs).merge(user_id: current_user.id)
   end
 end

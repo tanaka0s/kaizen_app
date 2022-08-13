@@ -19,6 +19,7 @@
 | Column             | Type          | Options                        |
 | ------------------ | ------------- | ------------------------------ |
 | user               | references    | null: false, foreign_key: true |
+| title              | string        | null: false                    |
 | where              | text          | null: false                    |
 | what               | text          | null: false                    |
 | why                | text          | null: false                    |

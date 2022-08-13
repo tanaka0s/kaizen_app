@@ -1,11 +1,12 @@
 class ProposalEstimation
   include ActiveModel::Model
-  attr_accessor :image, :user_id, :where, :what, :why, :how, :before_seconds, :before_workers, :before_days, :before_man_hours, :hourly_wage, :before_costs,
+  attr_accessor :image, :user_id, :title, :where, :what, :why, :how, :before_seconds, :before_workers, :before_days, :before_man_hours, :hourly_wage, :before_costs,
                 :proposal_id, :after_seconds, :after_workers, :after_days, :after_man_hours, :after_costs, :reduced_man_hours, :reduced_costs
 
   with_options presence: true do
     validates :image
     validates :user_id
+    validates :title
     validates :where
     validates :what
     validates :why
@@ -26,7 +27,7 @@ class ProposalEstimation
   end
 
   def save
-    proposal = Proposal.create(image: image, user_id: user_id, where: where, what: what, why: why, how: how,
+    proposal = Proposal.create(image: image, user_id: user_id, title: title, where: where, what: what, why: why, how: how,
                                before_seconds: before_seconds, before_workers: before_workers, before_days: before_days,
                                before_man_hours: before_man_hours, hourly_wage: hourly_wage, before_costs: before_costs)
 
