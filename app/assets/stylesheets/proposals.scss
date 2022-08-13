@@ -1,0 +1,197 @@
+// Place all the styles related to the proposals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+ul,
+li,
+h1,
+h2,
+p,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+/******************************************************** 
+  ヘッダー
+********************************************************/
+
+header {
+  background-color: #f1f8fe;
+  height: 100px;
+  width: 100%;
+}
+
+.header_bar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 40px;
+  font-size: 23px;
+  letter-spacing: 1.8px;
+  font-weight: 100;
+  color: black;
+}
+
+.nav_right {
+  margin-right: 40px;
+}
+
+.nav_btn {
+  line-height: 32px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.nav_logout {
+  line-height: 32px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+/******************************************************** 
+  トップページ
+********************************************************/
+.wrapper {
+  display: flex;
+}
+
+.side_bar {
+  width: 200px;
+  height: calc(100vh - 100px);
+  background-color: #f1f8fe;
+}
+
+.before_order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 0;
+  letter-spacing: 1px;
+}
+
+.order {
+  padding: 5px;
+  text-decoration: none;
+}
+
+.after_order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 1px;
+}
+
+.after_order a {
+  text-decoration: none;
+}
+
+.main_view {
+  width: calc(100vw - 200px);
+  height: calc(100vh - 100px);
+  background-color: #ffffff;
+}
+
+.main_top {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 188, 212, 0.26);
+  display: flex;
+  align-items: center;
+}
+
+.order_title {
+  padding-left: 20px;
+}
+
+.main_contents {
+  width: 100%;
+  height: calc(100vh - 100px - 50px);
+  overflow-y: scroll;
+}
+
+.proposal {
+  margin: 30px;
+  padding: 30px;
+  background-color: #f1f8fe;
+}
+
+.detail {
+  height: 300px;
+  display: flex;
+  margin-left: 100px;
+}
+
+.image {
+  border: 1px solid black;
+  width: 300px;
+}
+
+.text {
+  overflow-y: scroll;
+  border: 1px solid black;
+  width: 300px;
+}
+
+.where,.what,.why,.how {
+  height: 80px;
+  padding-left: 10px;
+}
+
+.current,.estimation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  & span {
+    padding: 10px 0;
+  }
+}
+
+.numeric {
+  padding: 10px 10px;
+}
+
+.arrow {
+  margin: 0 auto;
+  font-size: 30px;
+  width: fit-content;
+  color: red;
+}
+
+.calc_result {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.various_btn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  letter-spacing: 1px;
+}
+
+.action_btn {
+  padding: 5px;
+  text-decoration: none;
+}
+
+#hide_before_man_hours,#hide_before_costs,#hide_after_man_hours
+,#hide_after_costs,#hide_hourly_wage,#hide_reduced_man_hours
+,#hide_reduced_costs {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 50px;
+  display: inline-block;
+}
