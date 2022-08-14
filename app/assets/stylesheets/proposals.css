@@ -37,6 +37,9 @@ header {
   font-size: 23px;
   letter-spacing: 1.8px;
   font-weight: 100;
+}
+.logo a {
+  text-decoration: none;
   color: black;
 }
 
