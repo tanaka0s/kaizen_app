@@ -120,16 +120,38 @@ header {
   overflow-y: scroll;
 }
 
+/******************************************************** 
+  改善提案内容
+********************************************************/
 .proposal {
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
 }
 
+.title_btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  color: rgba(0, 187, 212, 0.8);
+  cursor: pointer;
+}
+
+.title {
+  width: 85%;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.proposal_user_name {
+  text-align: right;
+  padding-right: 20px;
+}
+
 .detail {
   height: 300px;
   display: flex;
-  margin-left: 100px;
+  justify-content: center;
 }
 
 .image {
@@ -137,15 +159,21 @@ header {
   width: 300px;
 }
 
-.text {
-  overflow-y: scroll;
+.image_tag {
+  width: 100%;
+  height: 100%;
+}
+
+.text_all, .comments {
+  overscroll-behavior-y: contain;
+  overflow: auto;
   border: 1px solid black;
   width: 300px;
 }
 
-.where, .what, .why, .how {
-  height: 80px;
+.text {
   padding-left: 10px;
+  margin-bottom: 10px;
 }
 
 .current, .estimation {
@@ -171,8 +199,12 @@ header {
 }
 
 .calc_result {
-  width: 200px;
+  width: 300px;
   margin: 0 auto;
+}
+
+.reduced_man_hours, .reduced_costs {
+  text-align: center;
 }
 
 .various_btn {
