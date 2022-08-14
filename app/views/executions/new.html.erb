@@ -1,0 +1,94 @@
+<%= form_with model: [@proposal, @execution], url: proposal_executions_path, local: true do |f| %>
+  <%= render "error_messages", model: @execution %>
+  <div class="field">
+    <%= f.label :image, "写真" %>
+    <%= f.file_field :image, id:"item-image" %>
+  </div>
+  <div class="field">
+   <%= f.label :title, "Title" %>
+   <%= f.text_field :title %>
+  </div>
+  <div class="field">
+   <%= f.label :where, "Where" %>
+   <%= f.text_area :where %>
+  </div>
+  <div class="field">
+    <%= f.label :what, "What" %>
+    <%= f.text_area :what %>
+  </div>
+  <div class="field">
+    <%= f.label :why, "Why" %>
+    <%= f.text_area :why %>
+  </div>
+  <div class="field">
+    <%= f.label :how, "How" %>
+    <%= f.text_area :how %>
+  </div>
+  <div>
+    <span>作業時間</span>
+    <%= f.number_field :before_seconds, class:"numeric_input", id:"before_seconds", placeholder:"秒単位で入力" %>
+    <span>s</span>
+    <span>x</span>
+    <span>作業人数</span>
+    <%= f.number_field :before_workers, class:"numeric_input", id:"before_workers", placeholder:"1日に使用する人数" %>
+    <span>人</span>
+    <span>x</span>
+    <span>年間日数</span>
+    <%= f.number_field :before_days, class:"numeric_input", id:"before_days", placeholder:"年間使用日数" %>
+    <span>日</span>
+    <span>=</span>
+    <span>工数</span>
+    <div id="hide_before_man_hours"></div>
+    <span>h</span>
+    <%= f.hidden_field :before_man_hours, class:"numeric_input", id:"before_man_hours"%>
+    <span>x</span>
+    <span>時給</span>
+    <%= f.number_field :hourly_wage, class:"numeric_input", id:"hourly_wage", placeholder:"平均時給" %>
+    <span>円</span>
+    <span>=</span>
+    <span>年間コスト</span>
+    <div id="hide_before_costs"></div>
+    <span>円</span>
+    <%= f.hidden_field :before_costs, class:"numeric_input", id:"before_costs" %>
+  </div>
+  <div>
+    <span>作業時間</span>
+    <%= f.number_field :after_seconds, class:"numeric_input", id:"after_seconds", placeholder:"秒単位で入力" %>
+    <span>s</span>
+    <span>x</span>
+    <span>作業人数</span>
+    <%= f.number_field :after_workers, class:"numeric_input", id:"after_workers", placeholder:"1日に使用する人数" %>
+    <span>人</span>
+    <span>x</span>
+    <span>年間日数</span>
+    <%= f.number_field :after_days, class:"numeric_input", id:"after_days", placeholder:"年間使用日数" %>
+    <span>日</span>
+    <span>=</span>
+    <span>工数</span>
+    <div id="hide_after_man_hours"></div>
+    <span>h</span>
+    <%= f.hidden_field :after_man_hours, class:"numeric_input", id:"after_man_hours"%>
+    <span>x</span>
+    <span>時給</span>
+    <div id="hide_hourly_wage"></div>
+    <span>円</span>
+    <span>=</span>
+    <span>年間コスト</span>
+    <div id="hide_after_costs"></div>
+    <span>円</span>
+    <%= f.hidden_field :after_costs, class:"numeric_input", id:"after_costs" %>
+  </div>
+  <div>
+    <span>年間削減工数</span>
+    <div id="hide_reduced_man_hours"></div>
+    <span>h</span>
+    <%= f.hidden_field :reduced_man_hours, class:"numeric_input", id:"reduced_man_hours" %>
+    <span>年間削減コスト</span>
+    <div id="hide_reduced_costs"></div>
+    <span>円</span>
+    <%= f.hidden_field :reduced_costs, class:"numeric_input", id:"reduced_costs" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "投稿する", id:"submit" %>
+  </div>
+<% end %>

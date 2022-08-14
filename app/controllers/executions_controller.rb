@@ -8,5 +8,4 @@ class ExecutionsController < ApplicationController
 
   def create
   end
-  
 end
