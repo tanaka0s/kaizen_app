@@ -2,7 +2,7 @@ class ProposalsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new]
 
   def index
-    @proposals = Proposal.includes(:user).order("updated_at DESC")
+    @proposals = Proposal.includes(:user).order('updated_at DESC')
   end
 
   def new
