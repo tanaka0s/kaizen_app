@@ -225,7 +225,6 @@ header {
 #hide_before_man_hours, #hide_before_costs, #hide_after_man_hours,
 #hide_after_costs, #hide_hourly_wage, #hide_reduced_man_hours,
 #hide_reduced_costs {
-  border-bottom: 1px solid #ccc;
-  padding: 10px 50px;
+  padding: 10px 10px;
   display: inline-block;
 }/*# sourceMappingURL=proposals.css.map */

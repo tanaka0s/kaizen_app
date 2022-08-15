@@ -1,94 +1,129 @@
-<%= form_with model: [@proposal, @execution], url: proposal_executions_path, local: true do |f| %>
-  <%= render "error_messages", model: @execution %>
-  <div class="field">
-    <%= f.label :image, "写真" %>
-    <%= f.file_field :image, id:"item-image" %>
+<div class="new_main_execution" >
+  <div class="new_execution">
+    <div class="new_execution_detail">
+      <div class="new_before_content">
+        <div class="top_before_character">Before</div>
+        <div class="new_before_proposal">
+          <div class="new_before_image">
+          <%= image_tag @proposal.image, class:"new_image_tag" %>
+          </div>
+          <div class="new_before_text">
+            <div class="new_text">
+            Where<br>
+            <%= @proposal.where %>
+            </div>
+            <div class="new_text">
+            What<br>
+            <%= @proposal.what %>
+            </div>
+            <div class="new_text">
+            Why<br>
+            <%= @proposal.why %>
+            </div>
+            <div class="new_text">
+            How<br>
+            <%= @proposal.how %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="new_after_content">
+        <%= form_with(model: [@proposal, @execution], url: proposal_executions_path, local: true, class:"new_form" ) do |f| %>
+        <%= render "proposals/error_messages", model: [@proposal, @execution] %>
+       <div class="top_after_character">After</div>
+       <div class="new_field">
+        <%= f.label :image, "改善後写真" %>
+        <%= f.file_field :image, id:"item-image" %>
+        </div>
+        <div class="new_field">
+        <%= f.label :where, "Where" %>
+        <%= f.text_area :where, class:"new_text" %>
+        </div>
+        <div class="new_field">
+        <%= f.label :what, "What" %>
+        <%= f.text_area :what, class:"new_text" %>
+        </div>
+        <div class="new_field">
+        <%= f.label :why, "Why" %>
+        <%= f.text_area :why, class:"new_text" %>
+        </div>
+        <div class="new_field">
+        <%= f.label :how, "How" %>
+        <%= f.text_area :how, class:"new_text" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="new_execution_calc" >
+      <div class="new_before_calc" >
+        <div class="bottom_before_character">Before</div>
+        <div class="new_before_calc_detail">
+          <div class="numeric">作業時間<%= @proposal.before_seconds %>s</div>
+          <span>x</span>
+          <div class="numeric">作業人数<%= @proposal.before_workers %>人</div>
+          <span>x</span>
+          <div class="numeric">年間作業日数<%= @proposal.before_days %>日</div>
+          <span>=</span>
+          <div class="numeric">年間工数<%= @proposal.before_man_hours %>h</div>
+          <span>x</span>
+          <div class="numeric">時給<%= @proposal.hourly_wage %>円</div>
+          <span>=</span>
+          <div class="numeric">年間コスト<%= @proposal.before_costs %>円</div>
+        </div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="new_after_calc">
+        <div class="bottom_after_character">After</div>
+        <div class="new_after_calc_detail">
+        <%= form_with(model: [@proposal, @execution], url: proposal_executions_path, local: true) do |f| %>
+          <%= render "proposals/error_messages", model: [@proposal, @execution] %>
+          <span>作業時間</span>
+          <%= f.number_field :after_seconds, class:"numeric_input", id:"after_seconds", placeholder:"秒単位で入力" %>
+          <span>s</span>
+          <span>x</span>
+          <span>作業人数</span>
+          <%= f.number_field :after_workers, class:"numeric_input", id:"after_workers", placeholder:"1日の使用人数" %>
+          <span>人</span>
+          <span>x</span>
+          <span>年間日数</span>
+          <%= f.number_field :after_days, class:"numeric_input", id:"after_days", placeholder:"年間使用日数" %>
+          <span>日</span>
+          <span>=</span>
+          <span>工数</span>
+          <div id="hide_after_man_hours"></div>
+          <span>h</span>
+          <%= f.hidden_field :after_man_hours, class:"numeric_input", id:"after_man_hours"%>
+          <span>x</span>
+          <span>時給</span>
+          <div id="hide_hourly_wage"></div>
+          <span>円</span>
+          <span>=</span>
+          <span>年間コスト</span>
+          <div id="hide_after_costs"></div>
+          <span>円</span>
+          <%= f.hidden_field :after_costs, class:"numeric_input", id:"after_costs" %>
+        </div>
+        <div class="arrow">⬇</div>
+      </div>
+      <div class="new_calc_result">
+        <div class="new_reduced_man_hours">
+          <span>年間削減工数</span>
+          <div id="hide_reduced_man_hours"></div>
+          <span>h</span>
+          <%= f.hidden_field :reduced_man_hours, class:"numeric_input", id:"reduced_man_hours" %>
+        </div>
+        <div class="new_reduced_costs">
+          <span>年間削減コスト</span>
+          <div id="hide_reduced_costs"></div>
+          <span>円</span>
+          <%= f.hidden_field :reduced_costs, class:"numeric_input", id:"reduced_costs" %>
+          </div>
+        </div>
+      <div class="actions">
+        <%= f.submit "投稿する", id:"submit" %>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-   <%= f.label :title, "Title" %>
-   <%= f.text_field :title %>
-  </div>
-  <div class="field">
-   <%= f.label :where, "Where" %>
-   <%= f.text_area :where %>
-  </div>
-  <div class="field">
-    <%= f.label :what, "What" %>
-    <%= f.text_area :what %>
-  </div>
-  <div class="field">
-    <%= f.label :why, "Why" %>
-    <%= f.text_area :why %>
-  </div>
-  <div class="field">
-    <%= f.label :how, "How" %>
-    <%= f.text_area :how %>
-  </div>
-  <div>
-    <span>作業時間</span>
-    <%= f.number_field :before_seconds, class:"numeric_input", id:"before_seconds", placeholder:"秒単位で入力" %>
-    <span>s</span>
-    <span>x</span>
-    <span>作業人数</span>
-    <%= f.number_field :before_workers, class:"numeric_input", id:"before_workers", placeholder:"1日に使用する人数" %>
-    <span>人</span>
-    <span>x</span>
-    <span>年間日数</span>
-    <%= f.number_field :before_days, class:"numeric_input", id:"before_days", placeholder:"年間使用日数" %>
-    <span>日</span>
-    <span>=</span>
-    <span>工数</span>
-    <div id="hide_before_man_hours"></div>
-    <span>h</span>
-    <%= f.hidden_field :before_man_hours, class:"numeric_input", id:"before_man_hours"%>
-    <span>x</span>
-    <span>時給</span>
-    <%= f.number_field :hourly_wage, class:"numeric_input", id:"hourly_wage", placeholder:"平均時給" %>
-    <span>円</span>
-    <span>=</span>
-    <span>年間コスト</span>
-    <div id="hide_before_costs"></div>
-    <span>円</span>
-    <%= f.hidden_field :before_costs, class:"numeric_input", id:"before_costs" %>
-  </div>
-  <div>
-    <span>作業時間</span>
-    <%= f.number_field :after_seconds, class:"numeric_input", id:"after_seconds", placeholder:"秒単位で入力" %>
-    <span>s</span>
-    <span>x</span>
-    <span>作業人数</span>
-    <%= f.number_field :after_workers, class:"numeric_input", id:"after_workers", placeholder:"1日に使用する人数" %>
-    <span>人</span>
-    <span>x</span>
-    <span>年間日数</span>
-    <%= f.number_field :after_days, class:"numeric_input", id:"after_days", placeholder:"年間使用日数" %>
-    <span>日</span>
-    <span>=</span>
-    <span>工数</span>
-    <div id="hide_after_man_hours"></div>
-    <span>h</span>
-    <%= f.hidden_field :after_man_hours, class:"numeric_input", id:"after_man_hours"%>
-    <span>x</span>
-    <span>時給</span>
-    <div id="hide_hourly_wage"></div>
-    <span>円</span>
-    <span>=</span>
-    <span>年間コスト</span>
-    <div id="hide_after_costs"></div>
-    <span>円</span>
-    <%= f.hidden_field :after_costs, class:"numeric_input", id:"after_costs" %>
-  </div>
-  <div>
-    <span>年間削減工数</span>
-    <div id="hide_reduced_man_hours"></div>
-    <span>h</span>
-    <%= f.hidden_field :reduced_man_hours, class:"numeric_input", id:"reduced_man_hours" %>
-    <span>年間削減コスト</span>
-    <div id="hide_reduced_costs"></div>
-    <span>円</span>
-    <%= f.hidden_field :reduced_costs, class:"numeric_input", id:"reduced_costs" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "投稿する", id:"submit" %>
-  </div>
-<% end %>
+</div>

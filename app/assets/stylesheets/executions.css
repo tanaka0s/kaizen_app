@@ -1,7 +1,3 @@
-// Place all the styles related to the executions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .new_main_execution {
   width: 100vw;
   height: calc(100vh - 100px);
@@ -76,20 +72,20 @@
   font-weight: bold;
 }
 
-.bottom_before_character,.bottom_after_character {
+.bottom_before_character, .bottom_after_character {
   font-weight: bold;
   margin-left: 35px;
 }
 
-.new_before_calc_detail,.new_after_calc_detail {
+.new_before_calc_detail, .new_after_calc_detail {
   width: 100%;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid black;
   padding-bottom: 3px;
-  & span {
-    padding: 10px 0;
-  }
+}
+.new_before_calc_detail span, .new_after_calc_detail span {
+  padding: 10px 0;
 }
 
 .new_execution_calc {
@@ -106,11 +102,11 @@
   align-items: center;
 }
 
-.new_reduced_man_hours,.new_reduced_costs {
+.new_reduced_man_hours, .new_reduced_costs {
   border-bottom: 1px solid black;
 }
 
 .actions {
   text-align: right;
   margin-right: 100px;
-}
+}/*# sourceMappingURL=executions.css.map */
