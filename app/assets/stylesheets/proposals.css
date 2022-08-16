@@ -222,9 +222,9 @@ header {
   text-decoration: none;
 }
 
-#hide_before_man_hours, #hide_before_costs, #hide_after_man_hours,
-#hide_after_costs, #hide_hourly_wage, #hide_reduced_man_hours,
-#hide_reduced_costs {
+#show_before_man_hours, #show_before_costs, #show_after_man_hours,
+#show_after_costs, #show_hourly_wage, #show_reduced_man_hours,
+#show_reduced_costs {
   padding: 10px 10px;
   display: inline-block;
 }/*# sourceMappingURL=proposals.css.map */

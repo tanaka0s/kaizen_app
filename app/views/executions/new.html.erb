@@ -32,7 +32,7 @@
         <%= render "proposals/error_messages", model: [@proposal, @execution] %>
        <div class="top_after_character">After</div>
        <div class="new_field">
-        <%= f.label :image, "改善後写真" %>
+        <%= f.label :image, "改善後の写真" %>
         <%= f.file_field :image, id:"item-image" %>
         </div>
         <div class="new_field">
@@ -59,17 +59,17 @@
       <div class="new_before_calc" >
         <div class="bottom_before_character">Before</div>
         <div class="new_before_calc_detail">
-          <div class="numeric">作業時間<%= @proposal.before_seconds %>s</div>
+          <div class="numeric", id="show_before_seconds"><%= @proposal.before_seconds %></div>
           <span>x</span>
-          <div class="numeric">作業人数<%= @proposal.before_workers %>人</div>
+          <div class="numeric", id="show_before_workers"><%= @proposal.before_workers %></div>
           <span>x</span>
-          <div class="numeric">年間作業日数<%= @proposal.before_days %>日</div>
+          <div class="numeric", id="show_before_days"><%= @proposal.before_days %></div>
           <span>=</span>
-          <div class="numeric">年間工数<%= @proposal.before_man_hours %>h</div>
+          <div class="numeric", id="show_before_man_hours"><%= @proposal.before_man_hours %></div>
           <span>x</span>
-          <div class="numeric">時給<%= @proposal.hourly_wage %>円</div>
+          <div class="numeric", id="show_hourly_wage"><%= @proposal.hourly_wage %></div>
           <span>=</span>
-          <div class="numeric">年間コスト<%= @proposal.before_costs %>円</div>
+          <div class="numeric", id="show_before_costs"><%= @proposal.before_costs %></div>
         </div>
       </div>
       <div class="arrow">⬇</div>
@@ -91,31 +91,31 @@
           <span>日</span>
           <span>=</span>
           <span>工数</span>
-          <div id="hide_after_man_hours"></div>
+          <div id="show_after_man_hours"></div>
           <span>h</span>
           <%= f.hidden_field :after_man_hours, class:"numeric_input", id:"after_man_hours"%>
           <span>x</span>
           <span>時給</span>
-          <div id="hide_hourly_wage"></div>
+          <div id="show_hourly_wage"><%= @proposal.hourly_wage %></div>
           <span>円</span>
           <span>=</span>
           <span>年間コスト</span>
-          <div id="hide_after_costs"></div>
+          <div id="show_after_costs"></div>
           <span>円</span>
           <%= f.hidden_field :after_costs, class:"numeric_input", id:"after_costs" %>
         </div>
-        <div class="arrow">⬇</div>
       </div>
+      <div class="arrow">⬇</div>
       <div class="new_calc_result">
         <div class="new_reduced_man_hours">
           <span>年間削減工数</span>
-          <div id="hide_reduced_man_hours"></div>
+          <div id="show_reduced_man_hours"></div>
           <span>h</span>
           <%= f.hidden_field :reduced_man_hours, class:"numeric_input", id:"reduced_man_hours" %>
         </div>
         <div class="new_reduced_costs">
           <span>年間削減コスト</span>
-          <div id="hide_reduced_costs"></div>
+          <div id="show_reduced_costs"></div>
           <span>円</span>
           <%= f.hidden_field :reduced_costs, class:"numeric_input", id:"reduced_costs" %>
           </div>
