@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new]
+  before_action :authenticate_user!, only: [:index, :new, :edit]
 
   def index
     @proposals = Proposal.includes(:user).order('updated_at DESC')
@@ -17,6 +17,9 @@ class ProposalsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
   end
 
   private
