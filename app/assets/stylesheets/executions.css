@@ -1,7 +1,5 @@
 @charset "UTF-8";
-/******************************************************** 
-  After一覧表示
-********************************************************/
+/* After一覧表示ページ */
 .execution_detail {
   height: 285px;
   display: flex;
@@ -62,9 +60,7 @@
   margin-right: 500px;
 }
 
-/******************************************************** 
-  改善提案実施ページ
-********************************************************/
+/* 改善提案実行ページ(投稿ページ) */
 .new_main_execution {
   width: 100vw;
   height: calc(100vh - 100px);
@@ -113,15 +109,6 @@
   height: 400px;
 }
 
-.new_form {
-  width: 100%;
-  height: 100%;
-}
-
-.new_text {
-  width: 100%;
-}
-
 .top_before_character {
   margin-bottom: 30px;
   font-weight: bold;
@@ -155,24 +142,4 @@
 
 .new_execution_calc {
   margin-top: 30px;
-}
-
-.numeric_input {
-  width: 111px;
-}
-
-.new_calc_result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.new_reduced_man_hours, .new_reduced_costs {
-  border-bottom: 1px solid black;
-}
-
-.actions {
-  text-align: right;
-  margin-right: 100px;
 }/*# sourceMappingURL=executions.css.map */
