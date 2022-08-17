@@ -97,6 +97,7 @@ window.addEventListener("load", ()=> {
       const afterCostsCalc = Math.round((afterManHours.value)*(showHourlyWage));
       afterCosts.value = afterCostsCalc
       showAfterCosts.innerHTML = afterCostsCalc
+      hourlyWage.value = showHourlyWage
       if((afterSeconds.value != 0) && (afterWorkers.value != 0) && (afterCosts.value != 0)){
         const reducedManHoursCalc = Math.round(((showBeforeManHours)-(afterManHours.value))*10)/10;
         reducedManHours.value = reducedManHoursCalc

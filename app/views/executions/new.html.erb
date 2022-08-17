@@ -5,23 +5,23 @@
         <div class="top_before_character">Before</div>
         <div class="new_before_proposal">
           <div class="new_before_image">
-          <%= image_tag @proposal.image, class:"new_image_tag" %>
+          <%= image_tag @proposal.image, class:"image_tag" %>
           </div>
           <div class="new_before_text">
-            <div class="new_text">
-            Where<br>
+            <div class="text">
+            <span>Where</span><br>
             <%= @proposal.where %>
             </div>
-            <div class="new_text">
-            What<br>
+            <div class="text">
+            <span>What</span><br>
             <%= @proposal.what %>
             </div>
-            <div class="new_text">
-            Why<br>
+            <div class="text">
+            <span>Why</span><br>
             <%= @proposal.why %>
             </div>
-            <div class="new_text">
-            How<br>
+            <div class="text">
+            <span>How</span><br>
             <%= @proposal.how %>
             </div>
           </div>
@@ -51,33 +51,41 @@
         <%= f.label :how, "How" %>
         <%= f.text_area :how, class:"new_text" %>
         </div>
-        <% end %>
       </div>
     </div>
-
     <div class="new_execution_calc" >
       <div class="new_before_calc" >
         <div class="bottom_before_character">Before</div>
         <div class="new_before_calc_detail">
+          <span>作業時間</span>
           <div class="numeric", id="show_before_seconds"><%= @proposal.before_seconds %></div>
+          <span>s</span>
           <span>x</span>
+          <span>作業人数</span>
           <div class="numeric", id="show_before_workers"><%= @proposal.before_workers %></div>
+          <span>人</span>
           <span>x</span>
+          <span>年間日数</span>
           <div class="numeric", id="show_before_days"><%= @proposal.before_days %></div>
+          <span>日</span>
           <span>=</span>
+          <span>年間工数</span>
           <div class="numeric", id="show_before_man_hours"><%= @proposal.before_man_hours %></div>
+          <span>h</span>
           <span>x</span>
+          <span>時給</span>
           <div class="numeric", id="show_hourly_wage"><%= @proposal.hourly_wage %></div>
+          <span>円</span>
           <span>=</span>
+          <span>年間コスト</span>
           <div class="numeric", id="show_before_costs"><%= @proposal.before_costs %></div>
+          <span>円</span>
         </div>
       </div>
       <div class="arrow">⬇</div>
       <div class="new_after_calc">
         <div class="bottom_after_character">After</div>
         <div class="new_after_calc_detail">
-        <%= form_with(model: [@proposal, @execution], url: proposal_executions_path, local: true) do |f| %>
-          <%= render "proposals/error_messages", model: [@proposal, @execution] %>
           <span>作業時間</span>
           <%= f.number_field :after_seconds, class:"numeric_input", id:"after_seconds", placeholder:"秒単位で入力" %>
           <span>s</span>
@@ -90,7 +98,7 @@
           <%= f.number_field :after_days, class:"numeric_input", id:"after_days", placeholder:"年間使用日数" %>
           <span>日</span>
           <span>=</span>
-          <span>工数</span>
+          <span>年間工数</span>
           <div id="show_after_man_hours"></div>
           <span>h</span>
           <%= f.hidden_field :after_man_hours, class:"numeric_input", id:"after_man_hours"%>
@@ -98,6 +106,7 @@
           <span>時給</span>
           <div id="show_hourly_wage"><%= @proposal.hourly_wage %></div>
           <span>円</span>
+          <%= f.hidden_field :hourly_wage, class:"numeric_input", id:"hourly_wage" %>
           <span>=</span>
           <span>年間コスト</span>
           <div id="show_after_costs"></div>

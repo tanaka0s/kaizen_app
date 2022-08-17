@@ -2,16 +2,85 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/******************************************************** 
+  After一覧表示
+********************************************************/
+.execution_detail {
+  height: 285px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.before_detail,.after_detail {
+  display: flex;
+}
+
+.execution_image {
+  border: 1px solid black;
+  border-right: none;
+  width: 272px;
+}
+
+.execution_text_all {
+  overscroll-behavior-y: contain;
+  overflow: auto;
+  border: 1px solid black;
+  width: 272px;
+}
+
+.execution_title_btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: rgba(0, 187, 212, 0.8);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.execution_title {
+  padding-left: 20px;
+}
+
+.before_after_user_name {
+  padding: 0 20px;
+  & span {
+    color: black;
+    margin-right: 10px;
+  }
+}
+
+.before_user_name {
+  border-bottom: 1px solid black;
+}
+
+.before_after_character {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.before_character {
+  margin-right: 500px;
+}
+
+/******************************************************** 
+  改善提案実施ページ
+********************************************************/
 .new_main_execution {
   width: 100vw;
   height: calc(100vh - 100px);
   background-color: #ffffff;
+  overflow-y: scroll;
 }
 
 .new_execution {
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
+  border: 3px solid black;
+  border-radius: 20px;
 }
 
 .new_execution_detail {
@@ -34,22 +103,12 @@
   border: 1px solid black;
 }
 
-.new_image_tag {
-  width: 100%;
-  height: 100%;
-}
-
 .new_before_text {
   width: 300px;
   height: 300px;
   overscroll-behavior-y: contain;
   overflow: auto;
   border: 1px solid black;
-}
-
-.new_text {
-  padding-left: 10px;
-  margin-bottom: 10px;
 }
 
 .new_after_content {
@@ -76,15 +135,20 @@
   font-weight: bold;
 }
 
-.bottom_before_character,.bottom_after_character {
-  font-weight: bold;
-  margin-left: 35px;
-}
-
-.new_before_calc_detail,.new_after_calc_detail {
+.new_before_calc_detail{
   width: 100%;
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 3px;
+  & span {
+    padding: 10px 5px 10px 0;
+  }
+}
+
+.new_after_calc_detail {
+  width: 100%;
+  text-align: center;
   border-bottom: 1px solid black;
   padding-bottom: 3px;
   & span {

@@ -17,7 +17,9 @@
         </div>
         <% if user_signed_in? %>
         <div class="nav_right">
+          <% if current_page?(action: 'index')%>
           <%= link_to "投稿する", new_proposal_path, class: :nav_btn %>
+          <% end %>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: :nav_logout %>
         </div>
         <% end %>
