@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root "proposals#index"
-  resources :proposals, only: [:index, :new, :create]
+  resources :proposals, only: [:index, :new, :create] do
+    resources :executions, only: [:new, :create] 
+  end
+  resources :executions, only: :index
 end
