@@ -179,11 +179,21 @@ header {
   font-weight: bold;
 }
 
+/* アコーディオン */
+.accordion__content {
+  display: none;
+}
+
+.accordion__content.is__open {
+  display: block;
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
+}
+
 /* トップページ(Before一覧ページ)*/
 .title_btn {
   border: 1px solid black;
   border-radius: 5px;
-  margin-bottom: 30px;
   color: rgba(0, 187, 212, 0.8);
   cursor: pointer;
 }
@@ -203,7 +213,7 @@ header {
   height: 300px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0 20px;
 }
 
 .image {

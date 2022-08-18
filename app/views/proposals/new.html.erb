@@ -5,7 +5,7 @@
       <div class="new_content">
         <%= form_with model: @proposal_estimation, url: proposals_path, local: true do |f| %>
         <%= render "error_messages", model: @proposal_estimation %>
-        <div class="field", id="identification">
+        <div class="field">
           <%= f.label :image, "改善前の写真" %>
           <%= f.file_field :image %>
         </div>

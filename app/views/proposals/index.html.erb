@@ -7,7 +7,9 @@
     <div class="main_contents">
     <% @proposals.each do |proposal|%>
       <% unless proposal.execution.present? %>
-      <div class="proposal">
+      <dl class="accordion js__accordion">
+      <div class="proposal accordion__item js__accordion__trigger">
+        <dt class="accordion__title">
         <div class="title_btn" >
           <div class="title" >
             <%= proposal.title %>
@@ -16,6 +18,8 @@
             <%= proposal.user.name%>
           </div>
         </div>
+        </dt>
+        <dd class="accordion__content">
         <div class="detail">
           <div class="image">
             <%= image_tag proposal.image, class: :image_tag %>
@@ -81,7 +85,9 @@
           <%= link_to "編集", edit_proposal_path(proposal) , class: :action_btn %>
           <%= link_to "実行", new_proposal_execution_path(proposal) , class: :action_btn %>
         </div>
-      </div>
+        </div>
+      </dd>
+      </dl>
       <% end %>
     <% end %>
     </div>

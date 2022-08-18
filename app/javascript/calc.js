@@ -20,8 +20,8 @@ window.addEventListener("load", ()=> {
   const reducedCosts = document.getElementById("reduced_costs");
   const showReducedCosts = document.getElementById("show_reduced_costs");
 
-  if (document.getElementById("identification") != null){
-  // 読み込まれたページに"identification"というid名の要素があれば発火(新規投稿の際)
+  if (document.getElementById("title") != null){
+  // 読み込まれたページに"title"というid名の要素があれば発火(新規投稿の際)
     const beforeCalculation = () => {
       const beforeManHoursCalc = Math.round((beforeSeconds.value)*(beforeWorkers.value)*(beforeDays.value)*10/3600)/10;
       beforeManHours.value = beforeManHoursCalc
@@ -83,7 +83,7 @@ window.addEventListener("load", ()=> {
 
   const path = location.pathname
   if (path.includes("executions") && path.includes("new")){
-  //読み込まれたパスにexecutionsとnewが含まれていれば発火(改善提案実行の際)
+  //読み込まれたパスにexecutionsとnewが含まれていれば発火(改善提案実行ページ)
     let showBeforeManHours = document.getElementById("show_before_man_hours");
     showBeforeManHours = showBeforeManHours.textContent;
     let showHourlyWage = document.getElementById("show_hourly_wage");
