@@ -35,4 +35,14 @@ class ProposalEstimation
                       after_days: after_days, after_man_hours: after_man_hours, after_costs: after_costs, hourly_wage: hourly_wage,
                       reduced_man_hours: reduced_man_hours, reduced_costs: reduced_costs)
   end
+
+  def renew(proposal)
+    proposal.update(image: image, title: title, where: where, what: what, why: why, how: how,
+                    before_seconds: before_seconds, before_workers: before_workers, before_days: before_days,
+                    before_man_hours: before_man_hours, hourly_wage: hourly_wage, before_costs: before_costs)
+
+    proposal.estimation.update(after_seconds: after_seconds, after_workers: after_workers, after_days: after_days,
+                               after_man_hours: after_man_hours, after_costs: after_costs, hourly_wage: hourly_wage,
+                               reduced_man_hours: reduced_man_hours, reduced_costs: reduced_costs)
+  end
 end

@@ -20,6 +20,19 @@ class ProposalsController < ApplicationController
   end
 
   def edit
+    @proposal = Proposal.find(params[:id])
+    @proposal_estimation = ProposalEstimation.new(title: @proposal.title)
+  end
+
+  def update
+    @proposal = Proposal.find(params[:id])
+    @proposal_estimation = ProposalEstimation.new(proposal_params)
+    if @proposal_estimation.valid?
+      @proposal_estimation.renew(@proposal)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private

@@ -8,7 +8,7 @@
     <% @proposals.each do |proposal|%>
       <% unless proposal.execution.present? %>
       <dl class="accordion js__accordion">
-      <div class="proposal accordion__item js__accordion__trigger">
+      <div class="proposal js__accordion__trigger">
         <dt class="accordion__title">
         <div class="title_btn" >
           <div class="title" >
@@ -52,7 +52,7 @@
           <span>x</span>
           <div class="numeric">作業人数<%= proposal.before_workers %>人</div>
           <span>x</span>
-          <div class="numeric">年間作業日数<%= proposal.before_days %>日</div>
+          <div class="numeric">年間使用日数<%= proposal.before_days %>日</div>
           <span>=</span>
           <div class="numeric">年間工数<%= proposal.before_man_hours %>h</div>
           <span>x</span>
@@ -67,7 +67,7 @@
           <span>x</span>
           <div class="numeric">作業人数<%= proposal.estimation.after_workers %>人</div>
           <span>x</span>
-          <div class="numeric">年間作業日数<%= proposal.estimation.after_days %>日</div>
+          <div class="numeric">年間使用日数<%= proposal.estimation.after_days %>日</div>
           <span>=</span>
           <div class="numeric">年間工数<%= proposal.estimation.after_man_hours %>h</div>
           <span>x</span>
