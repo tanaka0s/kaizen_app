@@ -1,6 +1,6 @@
 <div class="new_main_proposal">
   <div class="new_proposal">
-    <%= form_with model: @proposal_estimation, url: proposals_path, local: true do |f| %>
+    <%= form_with model: @proposal_estimation, url: proposal_path, method: :patch, local: true do |f| %>
     <%= render "error_messages", model: @proposal_estimation %>
     <%= render "shared", f: f %>
     <% end %>

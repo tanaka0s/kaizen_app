@@ -2,29 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/******************************************************** 
-  リセットCSS
-********************************************************/
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-ul,
-li,
-h1,
-h2,
-p,
-div {
-  margin: 0;
-  padding: 0;
-}
-
-/******************************************************** 
-  ヘッダー
-********************************************************/
-
+/* ヘッダー */
 header {
   background-color: #f1f8fe;
   height: 100px;
@@ -70,9 +48,7 @@ header {
   font-size: 16px;
 }
 
-/******************************************************** 
-  サイドバー
-********************************************************/
+/* サイドバー */
 .wrapper {
   display: flex;
 }
@@ -108,9 +84,7 @@ header {
   text-decoration: none;
 }
 
-/******************************************************** 
-  メイン(共通部分)
-********************************************************/
+/* メイン(共通部分) */
 .main_view {
   width: calc(100vw - 200px);
   height: calc(100vh - 100px);
@@ -205,14 +179,22 @@ header {
     font-weight: bold;
   }
 }
-/******************************************************** 
-  トップページ(Before一覧表示)
-********************************************************/
+
+/* アコーディオン */
+.accordion__content {
+  display: none;
+}
+
+.accordion__content.is__open {
+  display: block;
+  margin-inline-start: 0;
+}
+
+/* トップページ(Before一覧ページ)*/
 
 .title_btn {
   border: 1px solid black;
   border-radius: 5px;
-  margin-bottom: 30px;
   color: rgba(0, 187, 212, 0.8);
   cursor: pointer;
 }
@@ -232,7 +214,7 @@ header {
   height: 300px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0 20px;
 }
 
 .image {
@@ -253,4 +235,89 @@ header {
 ,#show_reduced_costs {
   padding: 10px 10px;
   display: inline-block;
+}
+
+/* 投稿ページ(共通) */
+.field_with_errors {
+  display: contents;
+}
+
+.new_form {
+  width: 100%;
+  height: 100%;
+}
+
+.new_text {
+  width: 100%;
+}
+
+.numeric_input {
+  width: 111px;
+}
+
+.new_calc_result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.new_reduced_man_hours,.new_reduced_costs {
+  border-bottom: 1px solid black;
+}
+
+.actions {
+  text-align: right;
+  margin-right: 100px;
+}
+
+#submit {
+  font-weight: 600;
+  padding: 10px 40px;
+  cursor: pointer;
+  transition: all 0.5s;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}
+
+/* 改善提案投稿ページ */
+.new_main_proposal {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  background-color: #ffffff;
+  overflow-y: scroll;
+}
+
+.new_proposal {
+  margin: 30px;
+  padding: 30px;
+  background-color: #f1f8fe;
+  border: 3px solid black;
+  border-radius: 20px;
+}
+
+.new_proposal_detail {
+  margin-bottom: 15px;
+}
+
+.new_character {
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+#title {
+  display: grid;
+  width: fit-content;
+}
+
+.new_content {
+  width: 350px;
+  height: 400px;
+  margin-left: 120px;
 }

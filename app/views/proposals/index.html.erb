@@ -7,7 +7,9 @@
     <div class="main_contents">
     <% @proposals.each do |proposal|%>
       <% unless proposal.execution.present? %>
-      <div class="proposal">
+      <dl class="accordion js__accordion">
+      <div class="proposal js__accordion__trigger">
+        <dt class="accordion__title">
         <div class="title_btn" >
           <div class="title" >
             <%= proposal.title %>
@@ -16,6 +18,8 @@
             <%= proposal.user.name%>
           </div>
         </div>
+        </dt>
+        <dd class="accordion__content">
         <div class="detail">
           <div class="image">
             <%= image_tag proposal.image, class: :image_tag %>
@@ -48,7 +52,7 @@
           <span>x</span>
           <div class="numeric">作業人数<%= proposal.before_workers %>人</div>
           <span>x</span>
-          <div class="numeric">年間作業日数<%= proposal.before_days %>日</div>
+          <div class="numeric">年間使用日数<%= proposal.before_days %>日</div>
           <span>=</span>
           <div class="numeric">年間工数<%= proposal.before_man_hours %>h</div>
           <span>x</span>
@@ -63,7 +67,7 @@
           <span>x</span>
           <div class="numeric">作業人数<%= proposal.estimation.after_workers %>人</div>
           <span>x</span>
-          <div class="numeric">年間作業日数<%= proposal.estimation.after_days %>日</div>
+          <div class="numeric">年間使用日数<%= proposal.estimation.after_days %>日</div>
           <span>=</span>
           <div class="numeric">年間工数<%= proposal.estimation.after_man_hours %>h</div>
           <span>x</span>
@@ -77,11 +81,13 @@
           <div class="reduced_costs">年間削減コスト<%= proposal.estimation.reduced_costs %>円</div>
         </div>
         <div class="various_btn">
-          <%= link_to "削除", root_path , class: :action_btn%>
-          <%= link_to "編集", root_path , class: :action_btn%>
-          <%= link_to "実行", new_proposal_execution_path(proposal) , class: :action_btn%>
+          <%= link_to "削除", root_path , class: :action_btn %>
+          <%= link_to "編集", edit_proposal_path(proposal) , class: :action_btn %>
+          <%= link_to "実行", new_proposal_execution_path(proposal) , class: :action_btn %>
         </div>
-      </div>
+        </div>
+      </dd>
+      </dl>
       <% end %>
     <% end %>
     </div>
