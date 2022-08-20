@@ -98,6 +98,7 @@ header {
 
 .order_title {
   padding-left: 20px;
+  font-weight: bold;
 }
 
 .main_contents {
@@ -162,11 +163,6 @@ header {
   letter-spacing: 1px;
 }
 
-.action_btn {
-  padding: 5px;
-  text-decoration: none;
-}
-
 .bottom_before_character, .bottom_after_character {
   font-weight: bold;
   margin-left: 35px;
@@ -177,6 +173,23 @@ header {
 }
 .text span {
   font-weight: bold;
+}
+
+.action_btn {
+  text-decoration: none;
+  margin-left: 10px;
+  font-weight: bold;
+  padding: 7px 35px;
+  cursor: pointer;
+  transition: all 0.5s;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+.action_btn:hover {
+  background-color: black;
+  color: white;
 }
 
 /* アコーディオン */
@@ -196,17 +209,26 @@ header {
   border-radius: 5px;
   color: rgba(0, 187, 212, 0.8);
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
-  width: 85%;
-  text-align: left;
   padding-left: 20px;
 }
 
+.proposal_user {
+  padding: 0 20px;
+  margin-top: 25px;
+}
+
 .proposal_user_name {
-  text-align: right;
-  padding-right: 20px;
+  width: 155px;
+  display: flex;
+  justify-content: space-between;
+}
+.proposal_user_name span {
+  color: black;
 }
 
 .detail {
@@ -271,7 +293,7 @@ header {
 }
 
 #submit {
-  font-weight: 600;
+  font-weight: bold;
   padding: 10px 40px;
   cursor: pointer;
   transition: all 0.5s;

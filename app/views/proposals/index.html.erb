@@ -2,7 +2,7 @@
   <%= render "side_bar" %>
   <div class="main_view">
     <div class="main_top">
-      <div class="order_title">新着順</div>
+      <div class="order_title">新着順(before)</div>
     </div>
     <div class="main_contents">
     <% @proposals.each do |proposal|%>
@@ -14,8 +14,10 @@
           <div class="title" >
             <%= proposal.title %>
           </div>
-          <div class="proposal_user_name">
-            <%= proposal.user.name%>
+          <div class="proposal_user">
+            <div class="proposal_user_name">
+            <span>提案者</span><%= proposal.user.name %>
+            </div>
           </div>
         </div>
         </dt>
@@ -81,9 +83,11 @@
           <div class="reduced_costs">年間削減コスト<%= proposal.estimation.reduced_costs %>円</div>
         </div>
         <div class="various_btn">
-          <%= link_to "削除", root_path , class: :action_btn %>
+        <% if current_user == proposal.user%>
+          <%= link_to "削除", proposal_path(proposal) , method: :delete, class: :action_btn %>
           <%= link_to "編集", edit_proposal_path(proposal) , class: :action_btn %>
-          <%= link_to "実行", new_proposal_execution_path(proposal) , class: :action_btn %>
+        <% end %>
+          <%= link_to "実施", new_proposal_execution_path(proposal) , class: :action_btn %>
         </div>
         </div>
       </dd>

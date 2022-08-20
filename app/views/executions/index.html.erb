@@ -2,7 +2,7 @@
   <%= render "proposals/side_bar" %>
   <div class="main_view">
     <div class="main_top">
-      <div class="order_title">新着順</div>
+      <div class="order_title">新着順(after)</div>
     </div>
     <div class="main_contents">
     <% @executions.each do |execution|%>
@@ -111,8 +111,10 @@
           <div class="reduced_costs">年間削減コスト<%= execution.reduced_costs %>円</div>
         </div>
         <div class="various_btn">
-          <%= link_to "削除", root_path , class: :action_btn%>
+        <% if current_user == execution.user%>
+          <%= link_to "削除", execution_path(execution), method: :delete , class: :action_btn%>
           <%= link_to "編集", edit_execution_path(execution), class: :action_btn%>
+        <% end %>
         </div>
         </dd>
       </div>
