@@ -44,12 +44,20 @@
   padding: 0 20px;
   & span {
     color: black;
-    margin-right: 10px;
   }
 }
 
 .before_user_name {
   border-bottom: 1px solid black;
+  width: 155px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.after_user_name {
+  width: 155px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .before_after_character {

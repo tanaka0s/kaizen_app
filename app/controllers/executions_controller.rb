@@ -1,16 +1,16 @@
 class ExecutionsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit]
+  before_action :set_proposal_id, only: [:new, :create]
+  before_action :set_execution, only: [:edit, :update]
   def index
     @executions = Execution.includes(:user, :proposal).order('updated_at DESC')
   end
 
   def new
-    @proposal = Proposal.find(params[:proposal_id])
     @execution = Execution.new
   end
 
   def create
-    @proposal = Proposal.find(params[:proposal_id])
     @execution = Execution.new(execution_params)
     if @execution.save
       redirect_to executions_path
@@ -20,11 +20,9 @@ class ExecutionsController < ApplicationController
   end
 
   def edit
-    @execution = Execution.find(params[:id])
   end
 
   def update
-    @execution = Execution.find(params[:id])
     if @execution.update(execution_update_params)
       redirect_to executions_path
     else
@@ -32,7 +30,24 @@ class ExecutionsController < ApplicationController
     end
   end
 
+  def destroy
+    execution = Execution.find(params[:id])
+    if current_user == execution.user
+      execution.destroy
+      execution.image.purge
+      redirect_to executions_path
+    end
+  end
+
   private
+
+  def set_proposal_id
+    @proposal = Proposal.find(params[:proposal_id])
+  end
+
+  def set_execution
+    @execution = Execution.find(params[:id])
+  end
 
   def execution_params
     params.require(:execution).permit(:image, :where, :what, :why, :how, :after_seconds, :after_workers, :after_days, :hourly_wage, :after_man_hours,

@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit]
+  before_action :set_proposal, only: [:edit, :update]
 
   def index
     @proposals = Proposal.includes(:user).order('updated_at DESC')
@@ -20,7 +21,6 @@ class ProposalsController < ApplicationController
   end
 
   def edit
-    @proposal = Proposal.find(params[:id])
     @proposal_estimation = ProposalEstimation.new(image: @proposal.image, title: @proposal.title, where: @proposal.where, what: @proposal.what, why: @proposal.why, how: @proposal.how,
                                                   before_seconds: @proposal.before_seconds, before_workers: @proposal.before_workers, before_days: @proposal.before_days,
                                                   before_man_hours: @proposal.before_man_hours, hourly_wage: @proposal.hourly_wage, before_costs: @proposal.before_costs,
@@ -30,7 +30,6 @@ class ProposalsController < ApplicationController
   end
 
   def update
-    @proposal = Proposal.find(params[:id])
     @proposal_estimation = ProposalEstimation.new(proposal_params)
     if @proposal_estimation.valid?
       @proposal_estimation.renew(@proposal)
@@ -40,7 +39,20 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def destroy
+    proposal = Proposal.find(params[:id])
+    if current_user == proposal.user
+      proposal.destroy
+      proposal.image.purge
+      redirect_to root_path
+    end
+  end
+
   private
+
+  def set_proposal
+    @proposal = Proposal.find(params[:id])
+  end
 
   def proposal_params
     params.require(:proposal_estimation).permit(:image, :title, :where, :what, :why, :how, :before_seconds, :before_workers, :before_days, :before_man_hours, :hourly_wage, :before_costs,

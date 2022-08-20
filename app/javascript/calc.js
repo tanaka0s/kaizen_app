@@ -36,7 +36,8 @@ window.addEventListener("load", ()=> {
       const beforeCostsCalc = Math.round((beforeManHours.value)*(hourlyWage.value));
       beforeCosts.value = beforeCostsCalc
       showBeforeCosts.innerHTML = beforeCostsCalc
-      if((beforeSeconds.value != 0) && (beforeWorkers.value != 0) && (beforeDays.value != 0) && (hourlyWage.value != 0) && (afterSeconds.value != 0) && (afterWorkers.value != 0) && (afterDays.value != 0)){
+      if((beforeSeconds.value != '') && (beforeWorkers.value != '') && (beforeDays.value != '') && (hourlyWage.value != '')
+        && (afterSeconds.value != '') && (afterWorkers.value != '') && (afterDays.value != '')){
         const reducedManHoursCalc = Math.round(((beforeManHours.value)-(afterManHours.value))*10)/10;
         reducedManHours.value = reducedManHoursCalc
         showReducedManHours.innerHTML = reducedManHoursCalc
@@ -52,7 +53,8 @@ window.addEventListener("load", ()=> {
       const afterCostsCalc = Math.round((afterManHours.value)*(hourlyWage.value));
       afterCosts.value = afterCostsCalc
       showAfterCosts.innerHTML = afterCostsCalc
-      if((beforeSeconds.value != 0) && (beforeWorkers.value != 0) && (beforeDays.value != 0) && (hourlyWage.value != 0) && (afterSeconds.value != 0) && (afterWorkers.value != 0) && (afterDays.value != 0)){
+      if((beforeSeconds.value != '') && (beforeWorkers.value != '') && (beforeDays.value != '') && (hourlyWage.value != '')
+        && (afterSeconds.value != '') && (afterWorkers.value != '') && (afterDays.value != '')){
         const reducedManHoursCalc = Math.round(((beforeManHours.value)-(afterManHours.value))*10)/10;
         reducedManHours.value = reducedManHoursCalc
         showReducedManHours.innerHTML = reducedManHoursCalc
@@ -109,7 +111,7 @@ window.addEventListener("load", ()=> {
       afterCosts.value = afterCostsCalc
       showAfterCosts.innerHTML = afterCostsCalc
       hourlyWage.value = showHourlyWage
-      if((afterSeconds.value != 0) && (afterWorkers.value != 0) && (afterCosts.value != 0)){
+      if((afterSeconds.value != '') && (afterWorkers.value != '') && (afterCosts.value != '')){
         const reducedManHoursCalc = Math.round(((showBeforeManHours)-(afterManHours.value))*10)/10;
         reducedManHours.value = reducedManHoursCalc
         showReducedManHours.innerHTML = reducedManHoursCalc
