@@ -20,8 +20,9 @@ window.addEventListener("load", ()=> {
   const reducedCosts = document.getElementById("reduced_costs");
   const showReducedCosts = document.getElementById("show_reduced_costs");
 
-  if (document.getElementById("title") != null){
   // 読み込まれたページに"title"というid名の要素があれば発火(新規投稿と編集の際)
+  if (document.getElementById("title") != null){
+    // 編集ページへ遷移した際、すでにDBに保存されている値を出力
     showBeforeManHours.innerHTML = beforeManHours.value
     showBeforeCosts.innerHTML = beforeCosts.value
     showHourlyWage.innerHTML = hourlyWage.value
@@ -29,6 +30,7 @@ window.addEventListener("load", ()=> {
     showAfterCosts.innerHTML = afterCosts.value
     showReducedManHours.innerHTML = reducedManHours.value
     showReducedCosts.innerHTML = reducedCosts.value
+    // Beforeの計算式(どれか一つのフォームの値が変更されると再計算される)
     const beforeCalculation = () => {
       const beforeManHoursCalc = Math.round((beforeSeconds.value)*(beforeWorkers.value)*(beforeDays.value)*10/3600)/10;
       beforeManHours.value = beforeManHoursCalc
@@ -36,6 +38,7 @@ window.addEventListener("load", ()=> {
       const beforeCostsCalc = Math.round((beforeManHours.value)*(hourlyWage.value));
       beforeCosts.value = beforeCostsCalc
       showBeforeCosts.innerHTML = beforeCostsCalc
+      // Beforeの計算式(年間削減工数と年間削減コストは全てのフォームに値が入力された時に計算される)
       if((beforeSeconds.value != '') && (beforeWorkers.value != '') && (beforeDays.value != '') && (hourlyWage.value != '')
         && (afterSeconds.value != '') && (afterWorkers.value != '') && (afterDays.value != '')){
         const reducedManHoursCalc = Math.round(((beforeManHours.value)-(afterManHours.value))*10)/10;
@@ -46,6 +49,8 @@ window.addEventListener("load", ()=> {
         showReducedCosts.innerHTML = reducedCostsCalc
       };
     };
+    
+    // Afterの計算式(どれか一つのフォームの値が変更されると再計算される)
     const afterCalculation = () => {
       const afterManHoursCalc = Math.round((afterSeconds.value)*(afterWorkers.value)*(afterDays.value)*10/3600)/10;
       afterManHours.value = afterManHoursCalc
@@ -53,6 +58,7 @@ window.addEventListener("load", ()=> {
       const afterCostsCalc = Math.round((afterManHours.value)*(hourlyWage.value));
       afterCosts.value = afterCostsCalc
       showAfterCosts.innerHTML = afterCostsCalc
+      // Afterの計算式(年間削減工数と年間削減コストは全てのフォームに値が入力された時に計算される)
       if((beforeSeconds.value != '') && (beforeWorkers.value != '') && (beforeDays.value != '') && (hourlyWage.value != '')
         && (afterSeconds.value != '') && (afterWorkers.value != '') && (afterDays.value != '')){
         const reducedManHoursCalc = Math.round(((beforeManHours.value)-(afterManHours.value))*10)/10;
@@ -74,6 +80,7 @@ window.addEventListener("load", ()=> {
     });
     hourlyWage.addEventListener("input",() => {
       beforeCalculation()
+      // 時給はBeforeとAfterで同じ値である為、Beforeの時給が入力された時点でAfterの時給も出力され計算される
       showHourlyWage.innerHTML = hourlyWage.value
       const afterCostsCalc = Math.round((afterManHours.value)*(hourlyWage.value));
       afterCosts.value = afterCostsCalc
@@ -90,9 +97,10 @@ window.addEventListener("load", ()=> {
     });
   };
 
+  //読み込まれたパスにexecutionsとnewもしくはeditが含まれていれば発火(改善提案実施ページ)
   const path = location.pathname
   if (path.includes("executions") && (path.includes("new") || path.includes("edit"))){
-  //読み込まれたパスにexecutionsとnewもしくはeditが含まれていれば発火(改善提案実行ページ)
+    // 編集ページへ遷移した際、すでにDBに保存されている値を出力
     let showBeforeManHours = document.getElementById("show_before_man_hours");
     showBeforeManHours = showBeforeManHours.textContent;
     let showHourlyWage = document.getElementById("show_hourly_wage");
@@ -103,6 +111,7 @@ window.addEventListener("load", ()=> {
     showAfterCosts.innerHTML = afterCosts.value
     showReducedManHours.innerHTML = reducedManHours.value
     showReducedCosts.innerHTML = reducedCosts.value
+    // Afterの計算式(どれか一つのフォームの値が変更されると再計算される)
     const executionCalculation = () => {
       const afterManHoursCalc = Math.round((afterSeconds.value)*(afterWorkers.value)*(afterDays.value)*10/3600)/10;
       afterManHours.value = afterManHoursCalc
@@ -111,7 +120,8 @@ window.addEventListener("load", ()=> {
       afterCosts.value = afterCostsCalc
       showAfterCosts.innerHTML = afterCostsCalc
       hourlyWage.value = showHourlyWage
-      if((afterSeconds.value != '') && (afterWorkers.value != '') && (afterCosts.value != '')){
+      // Afterの計算式(年間削減工数と年間削減コストは全てのフォームに値が入力された時に計算される)
+      if((afterSeconds.value != '') && (afterWorkers.value != '') && (afterDays.value != '')){
         const reducedManHoursCalc = Math.round(((showBeforeManHours)-(afterManHours.value))*10)/10;
         reducedManHours.value = reducedManHoursCalc
         showReducedManHours.innerHTML = reducedManHoursCalc
