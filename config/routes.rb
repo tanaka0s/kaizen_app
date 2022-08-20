@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :executions, only: [:new, :create] 
   end
   resources :executions, only: :index
+  resources :executions, only: [:edit, :update]
 end

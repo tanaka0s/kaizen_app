@@ -21,7 +21,12 @@ class ProposalsController < ApplicationController
 
   def edit
     @proposal = Proposal.find(params[:id])
-    @proposal_estimation = ProposalEstimation.new(title: @proposal.title)
+    @proposal_estimation = ProposalEstimation.new(image: @proposal.image, title: @proposal.title, where: @proposal.where, what: @proposal.what, why: @proposal.why, how: @proposal.how,
+                                                  before_seconds: @proposal.before_seconds, before_workers: @proposal.before_workers, before_days: @proposal.before_days,
+                                                  before_man_hours: @proposal.before_man_hours, hourly_wage: @proposal.hourly_wage, before_costs: @proposal.before_costs,
+                                                  after_seconds: @proposal.estimation.after_seconds, after_workers: @proposal.estimation.after_workers, after_days: @proposal.estimation.after_days,
+                                                  after_man_hours: @proposal.estimation.after_man_hours, after_costs: @proposal.estimation.after_costs, hourly_wage: @proposal.estimation.hourly_wage,
+                                                  reduced_man_hours: @proposal.estimation.reduced_man_hours, reduced_costs: @proposal.estimation.reduced_costs)
   end
 
   def update

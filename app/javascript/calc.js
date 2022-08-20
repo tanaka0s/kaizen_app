@@ -21,7 +21,14 @@ window.addEventListener("load", ()=> {
   const showReducedCosts = document.getElementById("show_reduced_costs");
 
   if (document.getElementById("title") != null){
-  // 読み込まれたページに"title"というid名の要素があれば発火(新規投稿の際)
+  // 読み込まれたページに"title"というid名の要素があれば発火(新規投稿と編集の際)
+    showBeforeManHours.innerHTML = beforeManHours.value
+    showBeforeCosts.innerHTML = beforeCosts.value
+    showHourlyWage.innerHTML = hourlyWage.value
+    showAfterManHours.innerHTML = afterManHours.value
+    showAfterCosts.innerHTML = afterCosts.value
+    showReducedManHours.innerHTML = reducedManHours.value
+    showReducedCosts.innerHTML = reducedCosts.value
     const beforeCalculation = () => {
       const beforeManHoursCalc = Math.round((beforeSeconds.value)*(beforeWorkers.value)*(beforeDays.value)*10/3600)/10;
       beforeManHours.value = beforeManHoursCalc
@@ -82,14 +89,18 @@ window.addEventListener("load", ()=> {
   };
 
   const path = location.pathname
-  if (path.includes("executions") && path.includes("new")){
-  //読み込まれたパスにexecutionsとnewが含まれていれば発火(改善提案実行ページ)
+  if (path.includes("executions") && (path.includes("new") || path.includes("edit"))){
+  //読み込まれたパスにexecutionsとnewもしくはeditが含まれていれば発火(改善提案実行ページ)
     let showBeforeManHours = document.getElementById("show_before_man_hours");
     showBeforeManHours = showBeforeManHours.textContent;
     let showHourlyWage = document.getElementById("show_hourly_wage");
     showHourlyWage = showHourlyWage.textContent;
     let showBeforeCosts = document.getElementById("show_before_costs");
     showBeforeCosts = showBeforeCosts.textContent;
+    showAfterManHours.innerHTML = afterManHours.value
+    showAfterCosts.innerHTML = afterCosts.value
+    showReducedManHours.innerHTML = reducedManHours.value
+    showReducedCosts.innerHTML = reducedCosts.value
     const executionCalculation = () => {
       const afterManHoursCalc = Math.round((afterSeconds.value)*(afterWorkers.value)*(afterDays.value)*10/3600)/10;
       afterManHours.value = afterManHoursCalc
