@@ -25,7 +25,7 @@ class ProposalEstimation
       validates :after_costs
       validates :reduced_costs
     end
-    with_options length: { minimum: 1, maximum: 10, message: 'is out of setting range' } do
+    with_options length: { minimum: 1, maximum: 9, message: 'is out of setting range' } do
       validates :before_man_hours
       validates :after_man_hours
       validates :reduced_man_hours

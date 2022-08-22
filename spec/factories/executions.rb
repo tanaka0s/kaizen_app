@@ -14,6 +14,6 @@ FactoryBot.define do
     reduced_man_hours { Faker::Number.between(from: 0, to: 1000) }
     reduced_costs { Faker::Number.between(from: 0, to: 1000) }
     association :user
-    proposal_id { 1 }
+    association :proposal
   end
 end

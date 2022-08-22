@@ -13,6 +13,11 @@ RSpec.describe ProposalEstimation, type: :model do
       end
     end
     context '新規投稿できない場合' do
+      it 'user_idが空では保存できない' do
+        @proposal_estimation.user_id = ''
+        @proposal_estimation.valid?
+        expect(@proposal_estimation.errors.full_messages).to include("User can't be blank")
+      end
       it 'imageが空では投稿できない' do
         @proposal_estimation.image = nil
         @proposal_estimation.valid?
@@ -128,8 +133,8 @@ RSpec.describe ProposalEstimation, type: :model do
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include("Before man hours can't be blank")
       end
-      it 'before_man_hoursが11桁以上では投稿できない' do
-        @proposal_estimation.before_man_hours = '10000000000'
+      it 'before_man_hoursが10桁以上では投稿できない' do
+        @proposal_estimation.before_man_hours = '1000000000'
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include('Before man hours is out of setting range')
       end
@@ -138,8 +143,8 @@ RSpec.describe ProposalEstimation, type: :model do
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include("After man hours can't be blank")
       end
-      it 'after_man_hoursが11桁以上では投稿できない' do
-        @proposal_estimation.after_man_hours = '10000000000'
+      it 'after_man_hoursが10桁以上では投稿できない' do
+        @proposal_estimation.after_man_hours = '1000000000'
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include('After man hours is out of setting range')
       end
@@ -148,8 +153,8 @@ RSpec.describe ProposalEstimation, type: :model do
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include("Reduced man hours can't be blank")
       end
-      it 'reduced_man_hoursが11桁以上では投稿できない' do
-        @proposal_estimation.reduced_man_hours = '10000000000'
+      it 'reduced_man_hoursが10桁以上では投稿できない' do
+        @proposal_estimation.reduced_man_hours = '1000000000'
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include('Reduced man hours is out of setting range')
       end
@@ -172,11 +177,6 @@ RSpec.describe ProposalEstimation, type: :model do
         @proposal_estimation.after_days = '366'
         @proposal_estimation.valid?
         expect(@proposal_estimation.errors.full_messages).to include('After days is out of setting range')
-      end
-      it 'user_idが空では保存できない' do
-        @proposal_estimation.user_id = ''
-        @proposal_estimation.valid?
-        expect(@proposal_estimation.errors.full_messages).to include("User can't be blank")
       end
     end
   end
