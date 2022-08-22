@@ -11,24 +11,27 @@ class ProposalEstimation
     validates :what
     validates :why
     validates :how
-    with_options numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 2_147_483_647,
-                                message: "is out of setting range"} do
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100_000,
+                                 message: 'is out of setting range' } do
       validates :before_seconds
       validates :before_workers
       validates :hourly_wage
-      validates :before_costs
       validates :after_seconds
       validates :after_workers
+    end
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 2_147_483_647,
+                                 message: 'is out of setting range' } do
+      validates :before_costs
       validates :after_costs
       validates :reduced_costs
     end
-    with_options length: { minimum: 1, maximum: 10, message: "is out of setting range" } do
+    with_options length: { minimum: 1, maximum: 10, message: 'is out of setting range' } do
       validates :before_man_hours
       validates :after_man_hours
       validates :reduced_man_hours
     end
-    with_options numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 365,
-                                message: "is out of setting range"} do
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 365,
+                                 message: 'is out of setting range' } do
       validates :before_days
       validates :after_days
     end
