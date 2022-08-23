@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit]
+  # before_action :authenticate_user!, only: [:index, :new, :edit]
   before_action :set_proposal, only: [:edit, :update]
 
   def index

@@ -1,5 +1,5 @@
 class ExecutionsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit]
+  # before_action :authenticate_user!, only: [:index, :new, :edit]
   before_action :set_proposal_id, only: [:new, :create]
   before_action :set_execution, only: [:edit, :update]
   def index
