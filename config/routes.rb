@@ -4,6 +4,5 @@ Rails.application.routes.draw do
   resources :proposals, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :executions, only: [:new, :create] 
   end
-  resources :executions, only: :index
-  resources :executions, only: [:edit, :update, :destroy]
+  resources :executions, only: [:index, :edit, :update, :destroy]
 end

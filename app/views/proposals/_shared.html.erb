@@ -2,30 +2,34 @@
   <div class="new_character">
     <% if @proposal.present? %>Edit<% else %>New<% end %>
   </div>
-  <div class="new_content">
-    <div class="field">
-      <%= f.label :image, "改善前の写真" %>
-      <%= f.file_field :image %>
+  <div class="new_content_description">
+    <div class="new_content">
+      <div class="field">
+        <%= f.label :image, "改善前の写真" %>
+        <%= f.file_field :image %>
+      </div>
+      <div class="field", id="title">
+        <%= f.label :title, "Title" %>
+        <%= f.text_field :title, calss:"new_text", placeholder:"タイトル" %>
+      </div>
+      <div class="field">
+        <%= f.label :where, "Where" %>
+        <%= f.text_area :where, class:"new_text", placeholder:"どこを改善しますか？", maxlength:"500" %>
+      </div>
+      <div class="field">
+        <%= f.label :what, "What" %>
+        <%= f.text_area :what, class:"new_text", placeholder:"何をしますか？", maxlength:"500" %>
+      </div>
+      <div class="field">
+        <%= f.label :why, "Why" %>
+        <%= f.text_area :why, class:"new_text", placeholder:"なぜ改善しようと思いましたか？", maxlength:"500" %>
+      </div>
+      <div class="field">
+        <%= f.label :how, "How" %>
+        <%= f.text_area :how, class:"new_text", placeholder:"どのよう改善したら良いと思いますか？", maxlength:"500" %>
+      </div>
     </div>
-    <div class="field", id="title">
-      <%= f.label :title, "Title" %>
-      <%= f.text_field :title, calss:"new_text" %>
-    </div>
-    <div class="field">
-      <%= f.label :where, "Where" %>
-      <%= f.text_area :where, class:"new_text" %>
-    </div>
-    <div class="field">
-      <%= f.label :what, "What" %>
-      <%= f.text_area :what, class:"new_text" %>
-    </div>
-    <div class="field">
-      <%= f.label :why, "Why" %>
-      <%= f.text_area :why, class:"new_text" %>
-    </div>
-    <div class="field">
-      <%= f.label :how, "How" %>
-      <%= f.text_area :how, class:"new_text" %>
+    <div class="new_description">
     </div>
   </div>
 </div>

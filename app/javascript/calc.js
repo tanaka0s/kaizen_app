@@ -97,9 +97,9 @@ window.addEventListener("load", ()=> {
     });
   };
 
-  //読み込まれたパスにexecutionsとnewもしくはeditが含まれていれば発火(改善提案実施ページ)
+  //改善提案実施ページで発火(newとeditのビュー及びエラーハンドリング時)
   const path = location.pathname
-  if (path.includes("executions") && (path.includes("new") || path.includes("edit"))){
+  if ((path.includes("proposals") && path.includes("executions")) || path.includes("executions/")){
     // 編集ページへ遷移した際、すでにDBに保存されている値を出力
     let showBeforeManHours = document.getElementById("show_before_man_hours");
     showBeforeManHours = showBeforeManHours.textContent;
