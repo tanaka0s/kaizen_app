@@ -2,12 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$Border: gray;
 /* ヘッダー */
 header {
   background-color: #f1f8fe;
   height: 100px;
   width: 100%;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid $Border;
 }
 
 .header_bar {
@@ -57,7 +58,7 @@ header {
   width: 200px;
   height: calc(100vh - 100px);
   background-color: #f1f8fe;
-  border-right: 2px solid black;
+  border-right: 1px solid gray;
 }
 
 .before_order {

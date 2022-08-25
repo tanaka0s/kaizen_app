@@ -5,7 +5,7 @@
       <div class="order_title">新着順(after)</div>
     </div>
     <div class="main_contents">
-    <% @executions.each do |execution|%>
+    <% @executions.each_with_index do |execution,i|%>
       <dl class="accordion js__accordion">
       <div class="proposal js__accordion__trigger">
         <dt class="accordion__title">
@@ -23,7 +23,11 @@
           </div>
         </div>
         </dt>
+        <% if i == 0 %>
+        <dd class="accordion__content is__open">
+        <% else %>
         <dd class="accordion__content">
+        <% end %>
         <div class="before_after_character">
           <div class="before_character">Before</div>
           <div class="after_character">After</div>

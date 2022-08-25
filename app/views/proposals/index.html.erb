@@ -5,7 +5,7 @@
       <div class="order_title">新着順(before)</div>
     </div>
     <div class="main_contents">
-    <% @proposals.each do |proposal|%>
+    <% @proposals.each_with_index do |proposal,i|%>
       <% unless proposal.execution.present? %>
       <dl class="accordion js__accordion">
       <div class="proposal js__accordion__trigger">
@@ -21,7 +21,11 @@
           </div>
         </div>
         </dt>
+        <% if i == 0 %>
+        <dd class="accordion__content is__open">
+        <% else %>
         <dd class="accordion__content">
+        <% end %>
         <div class="detail">
           <div class="image">
             <%= image_tag proposal.image, class: :image_tag %>
