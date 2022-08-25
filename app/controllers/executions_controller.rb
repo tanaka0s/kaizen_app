@@ -1,9 +1,12 @@
 class ExecutionsController < ApplicationController
-  # before_action :authenticate_user!, only: [:index, :new, :edit]
   before_action :set_proposal_id, only: [:new, :create]
   before_action :set_execution, only: [:edit, :update]
   def index
-    @executions = Execution.includes(:user, :proposal).order('updated_at DESC')
+    @executions = if params[:sort_costs]
+                    Execution.includes(:user, :proposal).order('reduced_costs DESC')
+                  else
+                    Execution.includes(:user, :proposal).order('updated_at DESC')
+                  end
   end
 
   def new

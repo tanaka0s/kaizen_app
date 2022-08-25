@@ -2,7 +2,11 @@
   <%= render "proposals/side_bar" %>
   <div class="main_view">
     <div class="main_top">
-      <div class="order_title">新着順(after)</div>
+      <% if current_page?(controller: "executions", action: "index", sort_costs: "true")%>
+      <div class="order_title">削減コストランキング(これまでに実施した改善)</div>
+      <% else %>
+      <div class="order_title">新着順(これまで実施した改善)</div>
+      <% end %>
     </div>
     <div class="main_contents">
     <% @executions.each_with_index do |execution,i|%>
@@ -29,8 +33,8 @@
         <dd class="accordion__content">
         <% end %>
         <div class="before_after_character">
-          <div class="before_character">Before</div>
-          <div class="after_character">After</div>
+          <div class="before_character">Before(改善前)</div>
+          <div class="after_character">After(改善後)</div>
         </div>
         <div class="execution_detail">
           <div class="before_detail">
@@ -80,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="bottom_before_character">Before</div>
+        <div class="bottom_before_character">Before(改善前)</div>
         <div class="before_calc">
           <div class="numeric">作業時間<%= execution.proposal.before_seconds %>s</div>
           <span>x</span>
@@ -95,7 +99,7 @@
           <div class="numeric">年間コスト<%= execution.proposal.before_costs %>円</div>
         </div>
         <div class="arrow">⬇</div>
-        <div class="bottom_after_character">After</div>
+        <div class="bottom_after_character">After(改善後)</div>
         <div class="after_calc">
           <div class="numeric">作業時間<%= execution.after_seconds %>s</div>
           <span>x</span>
