@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KaizenApp</title>
+    <title>Innovation</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,8 +16,14 @@
           <%= link_to "Innovation", root_path %>
         </div>
         <% if user_signed_in? %>
+          <% if current_page?(controller: "executions", action: "index") %>
+          <div class="total">
+            <div class="total_hours">合計削減工数<%= @executions_hours_sum %>h</div>
+            <div class="total_costs">合計削減コスト<%= @executions_costs_sum %>円</div>
+          </div>
+          <% end %>
         <div class="nav_right">
-          <% if current_page?(action: 'index')%>
+          <% if current_page?(action: "index")%>
           <%= link_to "投稿する", new_proposal_path, class: :nav_btn %>
           <% end %>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: :nav_logout %>

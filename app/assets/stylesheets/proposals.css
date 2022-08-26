@@ -98,7 +98,6 @@ header {
 
 .order_title {
   padding-left: 20px;
-  font-weight: bold;
 }
 
 .main_contents {
@@ -109,10 +108,11 @@ header {
 
 .proposal {
   margin: 30px;
-  padding: 30px;
+  padding: 10px 30px 10px 30px;
   background-color: #f1f8fe;
-  border: 2px solid gray;
+  border: 1px solid gray;
   border-radius: 20px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .image_tag {
@@ -124,7 +124,8 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
+  color: rgba(0, 0, 0, 0.7607843137);
 }
 .before_calc span, .after_calc span {
   padding: 10px 0;
@@ -147,13 +148,14 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .reduced_man_hours, .reduced_costs {
   text-align: center;
   border-bottom: 1px solid black;
   padding: 5px;
+  color: rgba(0, 0, 0, 0.7607843137);
 }
 
 .various_btn {
@@ -161,18 +163,21 @@ header {
   align-items: center;
   justify-content: end;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
 .bottom_before_character, .bottom_after_character {
-  font-weight: bold;
+  color: rgba(128, 128, 128, 0.9215686275);
   margin-left: 35px;
 }
 
-.text {
-  padding: 0 5px 10px 5px;
+.text, .comments {
+  padding: 0 5px 25px 5px;
+  font-size: 13px;
 }
-.text span {
-  font-weight: bold;
+.text span, .comments span {
+  color: rgba(0, 0, 0, 0.4705882353);
+  font-size: 15px;
 }
 
 .action_btn {
@@ -205,20 +210,20 @@ header {
 
 /* トップページ(Before一覧ページ)*/
 .title_btn {
-  border: 1px solid black;
   border-radius: 5px;
-  color: rgba(0, 187, 212, 0.8);
+  color: rgba(0, 0, 0, 0.7607843137);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
 
 .title {
-  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .proposal_user {
-  padding: 0 20px;
   margin-top: 25px;
 }
 
@@ -226,9 +231,13 @@ header {
   width: 155px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid gray;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .proposal_user_name span {
-  color: black;
+  color: rgba(128, 128, 128, 0.9215686275);
 }
 
 .detail {
@@ -239,14 +248,14 @@ header {
 }
 
 .image {
-  border: 1px solid black;
+  border: 1px solid gray;
   width: 300px;
 }
 
 .text_all, .comments {
   overscroll-behavior-y: contain;
   overflow: auto;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-left: none;
   width: 300px;
 }
@@ -284,7 +293,7 @@ header {
 }
 
 .new_reduced_man_hours, .new_reduced_costs {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
 }
 
 .actions {
@@ -298,7 +307,7 @@ header {
   cursor: pointer;
   transition: all 0.5s;
   color: black;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
 }
@@ -319,7 +328,7 @@ header {
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 3px solid black;
+  border: 2px solid gray;
   border-radius: 20px;
 }
 
