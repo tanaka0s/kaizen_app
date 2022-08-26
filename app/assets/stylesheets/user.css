@@ -2,7 +2,7 @@
   width: 980px;
   margin: 60px auto;
   padding: 60px;
-  background-color: #fff;
+  background-color: #f1f8fe;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -83,6 +83,7 @@
   margin-top: 20px;
   color: #fff;
   background-color: #38aef0;
+  cursor: pointer;
 }
 
 .account-page .field-label .field_with_errors {
@@ -93,17 +94,6 @@
 
 .account-page .field-input .field_with_errors {
   position: relative;
-}
-
-.account-page .field-input .field_with_errors:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 5px;
-  background-color: #d65f4c;
 }
 
 #error_explanation {
@@ -129,4 +119,12 @@
   margin: 0;
   padding: 0;
   font-size: 13px;
+}
+
+.account-page-sign-in {
+  margin-top: 100px;
+}
+
+.account_page_sign_up {
+  margin-top: -10px;
 }/*# sourceMappingURL=user.css.map */

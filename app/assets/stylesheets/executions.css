@@ -1,5 +1,15 @@
 @charset "UTF-8";
 /* After一覧表示ページ */
+.total {
+  text-align: center;
+  color: gray;
+  font-weight: bold;
+}
+
+.total_hours, .total_costs {
+  border-bottom: 1px solid gray;
+}
+
 .execution_detail {
   height: 285px;
   display: flex;
@@ -12,7 +22,7 @@
 }
 
 .execution_image {
-  border: 1px solid black;
+  border: 1px solid gray;
   border-right: none;
   width: 272px;
 }
@@ -20,38 +30,43 @@
 .execution_text_all {
   overscroll-behavior-y: contain;
   overflow: auto;
-  border: 1px solid black;
+  border: 1px solid gray;
   width: 272px;
 }
 
 .execution_title_btn {
-  border: 1px solid black;
   border-radius: 5px;
-  color: rgba(0, 187, 212, 0.8);
+  color: Black;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
 
 .execution_title {
-  padding-left: 20px;
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .before_after_user_name {
-  padding: 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .before_after_user_name span {
-  color: black;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .before_user_name {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
   width: 155px;
   display: flex;
   justify-content: space-between;
 }
 
 .after_user_name {
+  border-bottom: 1px solid gray;
   width: 155px;
   display: flex;
   justify-content: space-between;
@@ -59,12 +74,12 @@
 
 .before_after_character {
   display: flex;
-  font-weight: bold;
   margin: 20px 0 5px;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .before_character {
-  margin-right: 500px;
+  margin-right: 445px;
 }
 
 /* 改善提案実行ページ(投稿ページ) */
@@ -79,7 +94,7 @@
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 3px solid black;
+  border: 1px solid gray;
   border-radius: 20px;
 }
 
@@ -100,7 +115,7 @@
 .new_before_image {
   width: 300px;
   height: 300px;
-  border: 1px solid black;
+  border: 1px solid gray;
 }
 
 .new_before_text {
@@ -108,7 +123,7 @@
   height: 300px;
   overscroll-behavior-y: contain;
   overflow: auto;
-  border: 1px solid black;
+  border: 1px solid gray;
 }
 
 .new_after_content {
@@ -118,19 +133,19 @@
 
 .top_before_character {
   margin-bottom: 30px;
-  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .top_after_character {
   margin-bottom: 5px;
-  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .new_before_calc_detail {
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
   padding-bottom: 3px;
 }
 .new_before_calc_detail span {
@@ -140,8 +155,9 @@
 .new_after_calc_detail {
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
   padding-bottom: 3px;
+  margin-top: 10px;
 }
 .new_after_calc_detail span {
   padding: 10px 0;

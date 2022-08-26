@@ -2,7 +2,7 @@
   <div class="new_execution">
     <div class="new_execution_detail">
       <div class="new_before_content">
-        <div class="top_before_character">Before</div>
+        <div class="top_before_character">Before(改善前)</div>
         <div class="new_before_proposal">
           <div class="new_before_image">
           <%= image_tag @proposal.image, class:"image_tag" %>
@@ -30,7 +30,7 @@
       <div class="new_after_content">
         <%= form_with(model: [@proposal, @execution], url: proposal_executions_path, local: true, class:"new_form" ) do |f| %>
         <%= render "proposals/error_messages", model: [@proposal, @execution] %>
-       <div class="top_after_character">After</div>
+       <div class="top_after_character">After(改善後)</div>
        <div class="new_field">
         <%= f.label :image, "改善後の写真" %>
         <%= f.file_field :image %>
@@ -41,7 +41,7 @@
         </div>
         <div class="new_field">
         <%= f.label :what, "What" %>
-        <%= f.text_area :what, class:"new_text", placeholder:"何をしましたか？", maxlength:"500" %>
+        <%= f.text_area :what, class:"new_text", placeholder:"何を改善しましたか？", maxlength:"500" %>
         </div>
         <div class="new_field">
         <%= f.label :why, "Why" %>
@@ -55,7 +55,7 @@
     </div>
     <div class="new_execution_calc" >
       <div class="new_before_calc" >
-        <div class="bottom_before_character">Before</div>
+        <div class="bottom_before_character">Before(改善前)</div>
         <div class="new_before_calc_detail">
           <span>作業時間</span>
           <div class="numeric", id="show_before_seconds"><%= @proposal.before_seconds %></div>
@@ -84,7 +84,7 @@
       </div>
       <div class="arrow">⬇</div>
       <div class="new_after_calc">
-        <div class="bottom_after_character">After</div>
+        <div class="bottom_after_character">After(改善後)</div>
         <div class="new_after_calc_detail">
           <span>作業時間</span>
           <%= f.number_field :after_seconds, class:"numeric_input", id:"after_seconds", placeholder:"秒単位で入力" %>

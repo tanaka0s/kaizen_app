@@ -1,9 +1,15 @@
 class ExecutionsController < ApplicationController
-  # before_action :authenticate_user!, only: [:index, :new, :edit]
   before_action :set_proposal_id, only: [:new, :create]
   before_action :set_execution, only: [:edit, :update]
+  before_action :move_to_index, only: :edit
   def index
-    @executions = Execution.includes(:user, :proposal).order('updated_at DESC')
+    @executions_hours_sum = Execution.all.sum(:reduced_man_hours)
+    @executions_costs_sum = Execution.all.sum(:reduced_costs)
+    @executions = if params[:sort_costs]
+                    Execution.includes(:user, :proposal).order('reduced_costs DESC')
+                  else
+                    Execution.includes(:user, :proposal).order('updated_at DESC')
+                  end
   end
 
   def new
@@ -47,6 +53,10 @@ class ExecutionsController < ApplicationController
 
   def set_execution
     @execution = Execution.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user == @execution.user
   end
 
   def execution_params

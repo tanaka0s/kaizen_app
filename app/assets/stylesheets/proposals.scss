@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $Border: gray;
+$cBlack: #00000078;
+$cGray: #808080eb;
+$Text: #000000c2;
 /* ヘッダー */
 header {
   background-color: #f1f8fe;
@@ -58,20 +61,21 @@ header {
   width: 200px;
   height: calc(100vh - 100px);
   background-color: #f1f8fe;
-  border-right: 1px solid gray;
+  border-right: 1px solid $Border;
 }
 
 .before_order {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 70px 0;
+  padding: 95px 0;
   letter-spacing: 1px;
 }
 
 .order {
   padding: 5px;
   text-decoration: none;
+  color: #6400808f;
 }
 
 .after_order {
@@ -102,7 +106,6 @@ header {
 
 .order_title {
   padding-left: 20px;
-  font-weight: bold;
 }
 
 .main_contents {
@@ -113,10 +116,11 @@ header {
 
 .proposal {
   margin: 30px;
-  padding: 30px;
+  padding: 10px 30px 10px 30px;
   background-color: #f1f8fe;
-  border: 2px solid black;
+  border: 1px solid $Border;
   border-radius: 20px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .image_tag {
@@ -128,7 +132,8 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $Border;
+  color: $Text;
   & span {
     padding: 10px 0;
   }
@@ -149,13 +154,14 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .reduced_man_hours, .reduced_costs {
   text-align: center;
   border-bottom: 1px solid black;
   padding: 5px;
+  color: $Text;
 }
 
 .various_btn {
@@ -163,17 +169,20 @@ header {
   align-items: center;
   justify-content: end;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
 .bottom_before_character,.bottom_after_character {
-  font-weight: bold;
+  color: $cGray;
   margin-left: 35px;
 }
 
-.text {
-  padding: 0 5px 10px 5px;
+.text,.comments {
+  padding: 0 5px 25px 5px;
+  font-size: 13px;
   & span {
-    font-weight: bold;
+    color: $cBlack;
+    font-size: 15px;
   }
 }
 
@@ -207,20 +216,20 @@ header {
 /* トップページ(Before一覧ページ)*/
 
 .title_btn {
-  border: 1px solid black;
   border-radius: 5px;
-  color: rgba(0, 187, 212, 0.8);
+  color: $Text;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
 
-.title{
-  padding-left: 20px;
-} 
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .proposal_user {
-  padding: 0 20px;
   margin-top: 25px;
 }
 
@@ -228,8 +237,12 @@ header {
   width: 155px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid $Border;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   & span {
-    color: black;
+    color: $cGray;
   }
 }
 
@@ -241,14 +254,14 @@ header {
 }
 
 .image {
-  border: 1px solid black;
+  border: 1px solid $Border;
   width: 300px;
 }
 
 .text_all, .comments {
   overscroll-behavior-y: contain;
   overflow: auto;
-  border: 1px solid black;
+  border: 1px solid $Border;
   border-left: none;
   width: 300px;
 }
@@ -286,7 +299,7 @@ header {
 }
 
 .new_reduced_man_hours,.new_reduced_costs {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $Border;
 }
 
 .actions {
@@ -300,7 +313,7 @@ header {
   cursor: pointer;
   transition: all 0.5s;
   color: black;
-  border: 1px solid black;
+  border: 1px solid $Border;
   border-radius: 5px;
   background-color: white;
   &:hover {
@@ -321,7 +334,7 @@ header {
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 3px solid black;
+  border: 1px solid $Border;
   border-radius: 20px;
 }
 
@@ -332,6 +345,7 @@ header {
 .new_character {
   font-weight: bold;
   margin-left: 30px;
+  color: $cGray;
 }
 
 #title {

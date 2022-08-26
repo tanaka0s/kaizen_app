@@ -2,7 +2,11 @@
   <%= render "side_bar" %>
   <div class="main_view">
     <div class="main_top">
-      <div class="order_title">新着順(before)</div>
+      <% if current_page?(controller: "proposals", action: "index", sort_costs: "true")%>
+      <div class="order_title">削減コストランキング(改善提案)</div>
+      <% else %>
+      <div class="order_title">新着順(改善提案)</div>
+      <% end %>
     </div>
     <div class="main_contents">
     <% @proposals.each_with_index do |proposal,i|%>
@@ -21,11 +25,12 @@
           </div>
         </div>
         </dt>
-        <% if i == 0 %>
+        <% if i == 0 || i == 1%>
         <dd class="accordion__content is__open">
         <% else %>
         <dd class="accordion__content">
         <% end %>
+        <div class="bottom_before_character">Before(改善前)</div>
         <div class="detail">
           <div class="image">
             <%= image_tag proposal.image, class: :image_tag %>
@@ -52,7 +57,7 @@
           <span>Comments</span><br>
           </div>
         </div>
-        <div class="bottom_before_character">Before</div>
+        <div class="bottom_before_character">Before(改善前)</div>
         <div class="before_calc">
           <div class="numeric">作業時間<%= proposal.before_seconds %>s</div>
           <span>x</span>
@@ -67,7 +72,7 @@
           <div class="numeric">年間コスト<%= proposal.before_costs %>円</div>
         </div>
         <div class="arrow">⬇</div>
-        <div class="bottom_after_character">Estimation</div>
+        <div class="bottom_after_character">Estimation(改善後の予測)</div>
         <div class="after_calc">
           <div class="numeric">作業時間<%= proposal.estimation.after_seconds %>s</div>
           <span>x</span>

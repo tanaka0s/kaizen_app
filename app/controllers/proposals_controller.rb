@@ -1,9 +1,13 @@
 class ProposalsController < ApplicationController
-  # before_action :authenticate_user!, only: [:index, :new, :edit]
   before_action :set_proposal, only: [:edit, :update]
+  before_action :move_to_index, only: :edit
 
   def index
-    @proposals = Proposal.includes(:user).order('updated_at DESC')
+    @proposals = if params[:sort_costs]
+                   Proposal.includes(:user, :estimation).order('estimations.reduced_costs DESC')
+                 else
+                   Proposal.includes(:user, :estimation).order('updated_at DESC')
+                 end
   end
 
   def new
@@ -52,6 +56,10 @@ class ProposalsController < ApplicationController
 
   def set_proposal
     @proposal = Proposal.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user == @proposal.user
   end
 
   def proposal_params
