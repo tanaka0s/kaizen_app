@@ -2,6 +2,8 @@ class ExecutionsController < ApplicationController
   before_action :set_proposal_id, only: [:new, :create]
   before_action :set_execution, only: [:edit, :update]
   def index
+    @executions_hours_sum = Execution.all.sum(:reduced_man_hours)
+    @executions_costs_sum = Execution.all.sum(:reduced_costs)
     @executions = if params[:sort_costs]
                     Execution.includes(:user, :proposal).order('reduced_costs DESC')
                   else
