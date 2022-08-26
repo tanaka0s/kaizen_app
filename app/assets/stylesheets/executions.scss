@@ -101,7 +101,7 @@ $Text: #000000c2;
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 2px solid $Border;
+  border: 1px solid $Border;
   border-radius: 20px;
 }
 
@@ -140,12 +140,12 @@ $Text: #000000c2;
 
 .top_before_character {
   margin-bottom: 30px;
-  font-weight: bold;
+  color: $cBlack;
 }
 
 .top_after_character {
   margin-bottom: 5px;
-  font-weight: bold;
+  color: $cBlack;
 }
 
 .new_before_calc_detail{
@@ -164,6 +164,7 @@ $Text: #000000c2;
   text-align: center;
   border-bottom: 1px solid $Border;
   padding-bottom: 3px;
+  margin-top: 10px;
   & span {
     padding: 10px 0;
   }

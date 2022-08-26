@@ -1,6 +1,7 @@
 class ExecutionsController < ApplicationController
   before_action :set_proposal_id, only: [:new, :create]
   before_action :set_execution, only: [:edit, :update]
+  before_action :move_to_index, only: :edit
   def index
     @executions_hours_sum = Execution.all.sum(:reduced_man_hours)
     @executions_costs_sum = Execution.all.sum(:reduced_costs)
@@ -52,6 +53,10 @@ class ExecutionsController < ApplicationController
 
   def set_execution
     @execution = Execution.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user == @execution.user
   end
 
   def execution_params

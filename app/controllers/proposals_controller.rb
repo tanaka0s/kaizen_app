@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:edit, :update]
+  before_action :move_to_index, only: :edit
 
   def index
     @proposals = if params[:sort_costs]
@@ -55,6 +56,10 @@ class ProposalsController < ApplicationController
 
   def set_proposal
     @proposal = Proposal.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user == @proposal.user
   end
 
   def proposal_params

@@ -94,7 +94,7 @@
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 2px solid gray;
+  border: 1px solid gray;
   border-radius: 20px;
 }
 
@@ -133,12 +133,12 @@
 
 .top_before_character {
   margin-bottom: 30px;
-  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .top_after_character {
   margin-bottom: 5px;
-  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4705882353);
 }
 
 .new_before_calc_detail {
@@ -157,6 +157,7 @@
   text-align: center;
   border-bottom: 1px solid gray;
   padding-bottom: 3px;
+  margin-top: 10px;
 }
 .new_after_calc_detail span {
   padding: 10px 0;

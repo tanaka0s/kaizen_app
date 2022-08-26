@@ -75,6 +75,7 @@ header {
 .order {
   padding: 5px;
   text-decoration: none;
+  color: #6400808f;
 }
 
 .after_order {
@@ -333,7 +334,7 @@ header {
   margin: 30px;
   padding: 30px;
   background-color: #f1f8fe;
-  border: 2px solid $Border;
+  border: 1px solid $Border;
   border-radius: 20px;
 }
 
@@ -344,6 +345,7 @@ header {
 .new_character {
   font-weight: bold;
   margin-left: 30px;
+  color: $cGray;
 }
 
 #title {
