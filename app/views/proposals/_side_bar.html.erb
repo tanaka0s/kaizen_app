@@ -2,11 +2,11 @@
   <div class="before_order">
     <div class="before">before</div>
     <%= link_to "新着順", root_path, class: :order %>
-    <%= link_to "削減コストランキング", root_path(sort_costs:"true"), class: :order %>
+    <%= link_to "削減コスト高い順", root_path(sort_costs:"true"), class: :order %>
   </div>
   <div class="after_order">
     <div class="after">after</div>
     <%= link_to "新着順", executions_path, class: :order %>
-    <%= link_to "削減コストランキング", executions_path(sort_costs:"true"), class: :order %>
+    <%= link_to "削減コスト高い順", executions_path(sort_costs:"true"), class: :order %>
   </div>
 </div>
