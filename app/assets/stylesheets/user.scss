@@ -111,3 +111,16 @@
 .account_page_sign_up {
   margin-top: -10px;
 }
+
+.actions_login {
+  text-align: right;
+  & a {
+    margin-top: 20px;
+    color: #fff;
+    background-color: #38aef0;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    padding: 13px;
+  }
+}

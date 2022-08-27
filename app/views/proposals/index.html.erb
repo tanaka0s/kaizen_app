@@ -3,7 +3,7 @@
   <div class="main_view">
     <div class="main_top">
       <% if current_page?(controller: "proposals", action: "index", sort_costs: "true")%>
-      <div class="order_title">削減コストランキング(改善提案)</div>
+      <div class="order_title">削減コスト高い順(改善提案)</div>
       <% else %>
       <div class="order_title">新着順(改善提案)</div>
       <% end %>
@@ -25,10 +25,10 @@
           </div>
         </div>
         </dt>
-        <% if i == 0 || i == 1%>
-        <dd class="accordion__content is__open">
+        <% if i == 0 %>
+          <dd class="accordion__content is__open">
         <% else %>
-        <dd class="accordion__content">
+          <dd class="accordion__content">
         <% end %>
         <div class="bottom_before_character">Before(改善前)</div>
         <div class="detail">
