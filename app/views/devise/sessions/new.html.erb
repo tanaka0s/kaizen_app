@@ -4,6 +4,7 @@
       <h2>Log in</h2>
       <h5>登録しているユーザーでログイン</h5>
       <%= render "devise/shared/links"%>
+      
     </div>
     <div class='account-page__inner--right user-form'>
       <%= form_with model: resource, as: resource_name, url: session_path(resource_name), local: true do |f|%>
@@ -23,8 +24,9 @@
               <%= f.password_field :password, autocomplete: "off"%>
             </div>
           </div>
-          <div class='actions'>
+          <div class='actions_login'>
             <%= f.submit "Log in", class: 'btn'%>
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
           </div>
         </div>
       <% end %>
