@@ -40,8 +40,8 @@ https://kaizen-app-innovation.herokuapp.com/
 [こちらから](https://docs.google.com/spreadsheets/d/1aS1AcYL37TOMkTVHraLD-KmpTGn4IxBHTWTSB9Ycu6A/edit#gid=982722306)
 
 # 実施予定の機能
-現在、非同期通信を用いたコメント投稿機能を実装中  
-今後は、検索機能を実装予定  
+現在、結合テストコードを記述中  
+今後は、非同期通信を用いたコメント投稿機能を実装予定  
 
 # テーブル設計
 
@@ -131,14 +131,16 @@ https://kaizen-app-innovation.herokuapp.com/
 
 # 開発環境
 ・フロントエンド  
- HTML,CSS,JavaScript  
+&emsp;HTML,CSS,JavaScript  
 ・バックエンド  
- Ruby on Rails(Ruby)  
+&emsp;Ruby on Rails(Ruby)  
 ・データベース  
- MySQL  
+&emsp;MySQL  
+・インフラ  
+&emsp;AWS(S3)  
 ・OS  
- Mac  
+&emsp;Mac  
 ・テキストエディタ  
- Visual Studio Code  
+&emsp;Visual Studio Code  
 ・タスク管理  
- Github
+&emsp;Github
