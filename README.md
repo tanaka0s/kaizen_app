@@ -37,7 +37,7 @@ https://kaizen-app-innovation.herokuapp.com/
 
 # 要件定義
 
-
+[こちらから](https://docs.google.com/spreadsheets/d/1aS1AcYL37TOMkTVHraLD-KmpTGn4IxBHTWTSB9Ycu6A/edit#gid=982722306)
 
 # 実施予定の機能
 現在、非同期通信を用いたコメント投稿機能を実装中  
