@@ -13,9 +13,9 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid.Include both letters and numbers'
 
   def self.guest
-    find_or_create_by!(email: 'guest@test.com') do |user|
+    find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = '山田太郎'
+      user.name = 'ゲスト'
     end
   end
 end
