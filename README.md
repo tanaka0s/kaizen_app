@@ -133,7 +133,7 @@ https://kaizen-app-innovation.herokuapp.com/
 
 # 画面遷移図
 
-![画面遷移図](https://user-images.githubusercontent.com/109464303/187356723-553761ce-7b0c-4470-bd08-109ccf3428dc.png)
+![画面遷移図](https://user-images.githubusercontent.com/109464303/187383414-dbd24072-8d37-4f67-9a20-fcdef68ac54c.png)
 
 # 開発環境
 ・フロントエンド  
