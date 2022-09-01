@@ -6,18 +6,18 @@ FactoryBot.define do
     what  { Faker::Lorem.sentence }
     why   { Faker::Lorem.sentence }
     how   { Faker::Lorem.sentence }
-    before_seconds    { Faker::Number.between(from: 10, to: 50) }
-    before_workers    { Faker::Number.between(from: 10, to: 50) }
-    before_days       { Faker::Number.between(from: 10, to: 50) }
-    before_man_hours  { Faker::Number.between(from: 10, to: 50) }
+    before_seconds    { 125 }
+    before_workers    { 10 }
+    before_days       { 100 }
+    before_man_hours  { 10 }
     hourly_wage       { 1000 }
-    before_costs      { Faker::Number.between(from: 100, to: 1000) }
-    after_seconds     { Faker::Number.between(from: 1, to: 10) }
-    after_workers     { Faker::Number.between(from: 1, to: 10) }
-    after_days        { Faker::Number.between(from: 1, to: 10) }
-    after_man_hours   { Faker::Number.between(from: 1, to: 10) }
-    after_costs       { Faker::Number.between(from: 10, to: 100) }
-    reduced_man_hours { Faker::Number.between(from: 10, to: 100) }
-    reduced_costs     { Faker::Number.between(from: 100, to: 1000) }
+    before_costs      { 1000 }
+    after_seconds     { 25 }
+    after_workers     { 10 }
+    after_days        { 100 }
+    after_man_hours   { 10 }
+    after_costs       { 100 }
+    reduced_man_hours { 10 }
+    reduced_costs     { 1000 }
   end
 end

@@ -36,7 +36,29 @@ RSpec.describe '改善提案の新規投稿', type: :system do
       # トップページに遷移することを確認する
       expect(current_path).to eq(root_path)
       # トップページには先ほど投稿した内容の改善提案のタイトルがあることを確認する
+      beforeManHours = (@proposal_estimation.before_seconds * @proposal_estimation.before_workers * @proposal_estimation.before_days / 3600).round(1)
+      beforeCostsCalc = (@proposal_estimation.before_seconds * @proposal_estimation.before_workers * @proposal_estimation.before_days / 360).round
+      afterManHours = (@proposal_estimation.after_seconds * @proposal_estimation.after_workers * @proposal_estimation.after_days / 3600).round(1)
+      afterCostsCalc = (@proposal_estimation.after_seconds * @proposal_estimation.after_workers * @proposal_estimation.after_days / 360).round
+      expect(page).to have_selector("img[src$='test_image.png']")
       expect(page).to have_content(@proposal_estimation.title)
+      expect(page).to have_content(@proposal_estimation.where)
+      expect(page).to have_content(@proposal_estimation.what)
+      expect(page).to have_content(@proposal_estimation.why)
+      expect(page).to have_content(@proposal_estimation.how)
+      expect(page).to have_content(@proposal_estimation.before_seconds)
+      expect(page).to have_content(@proposal_estimation.before_workers)
+      expect(page).to have_content(@proposal_estimation.before_days)
+      expect(page).to have_content(beforeManHours)
+      expect(page).to have_content(@proposal_estimation.hourly_wage)
+      expect(page).to have_content(beforeCostsCalc * @proposal_estimation.hourly_wage / 10)
+      expect(page).to have_content(@proposal_estimation.after_seconds)
+      expect(page).to have_content(@proposal_estimation.after_workers)
+      expect(page).to have_content(@proposal_estimation.after_days)
+      expect(page).to have_content(afterManHours)
+      expect(page).to have_content(afterCostsCalc * @proposal_estimation.hourly_wage / 10)
+      expect(page).to have_content((beforeManHours / 10) - (afterManHours / 10))
+      expect(page).to have_content((beforeCostsCalc * @proposal_estimation.hourly_wage / 10) - (afterCostsCalc * @proposal_estimation.hourly_wage / 10))
     end
   end
   context '新規投稿ができないとき' do
