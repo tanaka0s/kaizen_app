@@ -75,3 +75,139 @@ RSpec.describe '改善提案の新規投稿', type: :system do
     end
   end
 end
+
+RSpec.describe '改善提案の編集', type: :system do
+  before do
+    @user1 = FactoryBot.create(:user)
+    @proposal1 = FactoryBot.create(:proposal, user_id: @user1.id)
+    @estimation1 = FactoryBot.create(:estimation, proposal_id: @proposal1.id)
+    @user2 = FactoryBot.create(:user)
+    @proposal2 = FactoryBot.create(:proposal, user_id: @user2.id)
+    @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
+  end
+
+  context '投稿内容の編集ができるとき' do
+    it 'ログインしたユーザーは自分が投稿した改善提案を編集できる' do
+      # ログインする
+      sign_in(@user1)
+      # 改善提案1のタイトル部分をクリックしてアコーディオンを開く
+      all('.title_btn')[1].click
+      sleep 0.5
+      # 改善提案1に編集ページへのリンクがある
+      expect(
+        all('.proposal')[1]
+      ).to have_link '編集', href: edit_proposal_path(@proposal1)
+      # 編集ボタンをクリックすると改善提案1の編集ページへ遷移する
+      all('.action_btn')[2].click
+      expect(current_path).to eq(edit_proposal_path(@proposal1))
+      # すでに投稿済みの内容が画像以外フォームに入っていることを確認する
+      expect(
+        find('#proposal_estimation_title').value
+      ).to eq(@proposal1.title)
+      expect(
+        find('#proposal_estimation_where').value
+      ).to eq(@proposal1.where)
+      expect(
+        find('#proposal_estimation_what').value
+      ).to eq(@proposal1.what)
+      expect(
+        find('#proposal_estimation_why').value
+      ).to eq(@proposal1.why)
+      expect(
+        find('#proposal_estimation_how').value
+      ).to eq(@proposal1.how)
+      expect(
+        find('#before_seconds').value.to_i
+      ).to eq(@proposal1.before_seconds)
+      expect(
+        find('#before_workers').value.to_i
+      ).to eq(@proposal1.before_workers)
+      expect(
+        find('#before_days').value.to_i
+      ).to eq(@proposal1.before_days)
+      expect(
+        find('#before_man_hours', visible: false).value.to_i
+      ).to eq(@proposal1.before_man_hours)
+      expect(
+        find('#hourly_wage').value.to_i
+      ).to eq(@proposal1.hourly_wage)
+      expect(
+        find('#before_costs', visible: false).value.to_i
+      ).to eq(@proposal1.before_costs)
+      expect(
+        find('#after_workers').value.to_i
+      ).to eq(@proposal1.estimation.after_workers)
+      expect(
+        find('#after_days').value.to_i
+      ).to eq(@proposal1.estimation.after_days)
+      expect(
+        find('#after_man_hours', visible: false).value.to_i
+      ).to eq(@proposal1.estimation.after_man_hours)
+      expect(
+        find('#after_costs', visible: false).value.to_i
+      ).to eq(@proposal1.estimation.after_costs)
+      expect(
+        find('#reduced_man_hours', visible: false).value.to_i
+      ).to eq(@proposal1.estimation.reduced_man_hours)
+      expect(
+        find('#reduced_costs', visible: false).value.to_i
+      ).to eq(@proposal1.estimation.reduced_costs)
+      # 投稿内容を編集する
+      image_path = Rails.root.join('public/images/test_image2.png')
+      attach_file('proposal_estimation[image]', image_path, make_visible: true)
+      fill_in 'proposal_estimation_title', with: "#{@proposal1.title}+編集したテキスト"
+      fill_in 'proposal_estimation_where', with: "#{@proposal1.where}+編集したテキスト"
+      fill_in 'proposal_estimation_what', with: "#{@proposal1.what}+編集したテキスト"
+      fill_in 'proposal_estimation_why', with: "#{@proposal1.why}+編集したテキスト"
+      fill_in 'proposal_estimation_how', with: "#{@proposal1.how}+編集したテキスト"
+      fill_in 'before_seconds', with: @proposal1.before_seconds + 1
+      fill_in 'before_workers', with: @proposal1.before_workers + 1
+      fill_in 'before_days', with: @proposal1.before_days + 1
+      fill_in 'hourly_wage', with: @proposal1.hourly_wage + 100
+      fill_in 'after_seconds', with: @proposal1.estimation.after_seconds + 1
+      fill_in 'after_workers', with: @proposal1.estimation.after_workers + 1
+      fill_in 'after_days', with: @proposal1.estimation.after_days + 1
+      # 編集してもProposalモデルとEstimationモデルのカウントは変わらないことを確認する
+      expect  do
+        click_on('投稿する')
+      end.not_to change { Proposal.count & Estimation.count }
+      # トップページに遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # トップページには先ほど変更した内容が存在することを確認する
+      beforeManHours = ((@proposal1.before_seconds + 1) * (@proposal1.before_workers + 1) * (@proposal1.before_days + 1) / 3600).round(1)
+      beforeCostsCalc = ((@proposal1.before_seconds + 1) * (@proposal1.before_workers + 1) * (@proposal1.before_days + 1) / 360).round
+      afterManHours = ((@proposal1.estimation.after_seconds + 1) * (@proposal1.estimation.after_workers + 1) * (@proposal1.estimation.after_days + 1) / 3600).round(1)
+      afterCostsCalc = ((@proposal1.estimation.after_seconds + 1) * (@proposal1.estimation.after_workers + 1) * (@proposal1.estimation.after_days + 1) / 360).round
+      expect(page).to have_selector("img[src$='test_image2.png']")
+      expect(page).to have_content("#{@proposal1.title}+編集したテキスト")
+      expect(page).to have_content("#{@proposal1.where}+編集したテキスト")
+      expect(page).to have_content("#{@proposal1.what}+編集したテキスト")
+      expect(page).to have_content("#{@proposal1.why}+編集したテキスト")
+      expect(page).to have_content("#{@proposal1.how}+編集したテキスト")
+      expect(page).to have_content(@proposal1.before_seconds + 1)
+      expect(page).to have_content(@proposal1.before_workers + 1)
+      expect(page).to have_content(@proposal1.before_days + 1)
+      expect(page).to have_content(beforeManHours)
+      expect(page).to have_content(@proposal1.hourly_wage + 100)
+      expect(page).to have_content(beforeCostsCalc * (@proposal1.hourly_wage + 100) / 10)
+      expect(page).to have_content(@proposal1.estimation.after_seconds + 1)
+      expect(page).to have_content(@proposal1.estimation.after_workers + 1)
+      expect(page).to have_content(@proposal1.estimation.after_days + 1)
+      expect(page).to have_content(afterManHours)
+      expect(page).to have_content(afterCostsCalc * (@proposal1.hourly_wage + 100) / 10)
+      expect(page).to have_content((beforeManHours / 10) - (afterManHours / 10))
+      expect(page).to have_content((beforeCostsCalc * (@proposal1.hourly_wage + 100) / 10) - (afterCostsCalc * (@proposal1.hourly_wage + 100) / 10))
+    end
+  end
+  context '投稿内容を編集できないとき' do
+    it 'ログインしたユーザーは自分以外が投稿した改善提案の編集画面には遷移できない' do
+      # 改善提案1を投稿したユーザーでログインする
+      visit new_user_session_path
+      sign_in(@user1)
+      # 改善提案2に「編集」へのリンクがないことを確認する
+      expect(
+        all('.proposal')[0]
+      ).to have_no_link '編集', href: edit_proposal_path(@proposal2)
+    end
+  end
+end
