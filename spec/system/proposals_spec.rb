@@ -5,7 +5,6 @@ RSpec.describe '改善提案の新規投稿', type: :system do
     @user = FactoryBot.create(:user)
     @proposal_estimation = FactoryBot.build(:proposal_estimation)
   end
-
   context '新規投稿投稿ができるとき' do
     it 'ログインしたユーザーは新規投稿できる' do
       # ログインする
@@ -29,7 +28,7 @@ RSpec.describe '改善提案の新規投稿', type: :system do
       fill_in 'after_seconds', with: @proposal_estimation.after_seconds
       fill_in 'after_workers', with: @proposal_estimation.after_workers
       fill_in 'after_days', with: @proposal_estimation.after_days
-      # 送信するとProposalモデルとEstimationモデルのカウントが1上がることを確認する
+      # 送信するとProposalモデルとEstimationモデルのレコードのカウントが1上がることを確認する
       expect  do
         click_on('投稿する')
       end.to change { Proposal.count & Estimation.count }.by(1)
@@ -107,15 +106,14 @@ RSpec.describe '改善提案の編集', type: :system do
     @proposal2 = FactoryBot.create(:proposal, user_id: @user2.id)
     @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
   end
-
   context '投稿内容の編集ができるとき' do
     it 'ログインしたユーザーは自分が投稿した改善提案を編集できる' do
-      # ログインする
+      # 改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
       # 改善提案1のタイトル部分をクリックしてアコーディオンを開く
       all('.title_btn')[1].click
       sleep 0.5
-      # 改善提案1に編集ページへのリンクがある
+      # 改善提案1に編集ページへのリンクがあることを確認する
       expect(
         all('.proposal')[1]
       ).to have_link '編集', href: edit_proposal_path(@proposal1)
@@ -224,12 +222,55 @@ RSpec.describe '改善提案の編集', type: :system do
   context '投稿内容を編集できないとき' do
     it 'ログインしたユーザーは自分以外が投稿した改善提案の編集画面には遷移できない' do
       # 改善提案1を投稿したユーザーでログインする
-      visit new_user_session_path
       sign_in(@user1)
       # 改善提案2に「編集」へのリンクがないことを確認する
       expect(
         all('.proposal')[0]
       ).to have_no_link '編集', href: edit_proposal_path(@proposal2)
+    end
+  end
+end
+
+RSpec.describe '改善提案の削除', type: :system do
+  before do
+    @user1 = FactoryBot.create(:user)
+    @proposal1 = FactoryBot.create(:proposal, user_id: @user1.id)
+    @estimation1 = FactoryBot.create(:estimation, proposal_id: @proposal1.id)
+    @user2 = FactoryBot.create(:user)
+    @proposal2 = FactoryBot.create(:proposal, user_id: @user2.id)
+    @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
+  end
+  context '投稿を削除ができるとき' do
+    it 'ログインしたユーザーは自らが投稿した改善提案の削除ができる' do
+      # 改善提案1を投稿したユーザーでログインする
+      sign_in(@user1)
+      # トップページに遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # 改善提案1のタイトル部分をクリックしてアコーディオンを開く
+      all('.title_btn')[1].click
+      sleep 0.5
+      # 改善提案1に「削除」へのリンクがあることを確認する
+      expect(
+        all('.proposal')[1]
+      ).to have_link '削除', href: proposal_path(@proposal1)
+      # 削除ボタンをクリックするとProposalモデルとEstimationモデルのレコードの数が1減ることを確認する
+      expect do
+        all('.action_btn')[1].click
+      end.to change { Proposal.count & Estimation.count }.by(-1)
+      # 削除実行後もトップページにいることを確認する
+      expect(current_path).to eq(root_path)
+      # トップページに改善提案1の内容が存在しないことを確認する
+      expect(page).to have_no_content(@proposal1)
+    end
+  end
+  context '投稿の削除ができないとき' do
+    it 'ログインしたユーザーは自分以外が投稿したツイートの削除ができない' do
+      # 改善提案1を投稿したユーザーでログインする
+      sign_in(@user1)
+      # 改善提案2に「削除」へのリンクがないことを確認する
+      expect(
+        all('.proposal')[0]
+      ).to have_no_link '削除', href: proposal_path(@proposal2)
     end
   end
 end
