@@ -187,7 +187,7 @@ RSpec.describe '改善提案の編集', type: :system do
       fill_in 'after_seconds', with: @proposal1.estimation.after_seconds + 1
       fill_in 'after_workers', with: @proposal1.estimation.after_workers + 1
       fill_in 'after_days', with: @proposal1.estimation.after_days + 1
-      # 編集してもProposalモデルとEstimationモデルのカウントは変わらないことを確認する
+      # 編集してもProposalモデルとEstimationモデルのレコードのカウントは変わらないことを確認する
       expect  do
         click_on('投稿する')
       end.not_to change { Proposal.count & Estimation.count }
@@ -264,7 +264,7 @@ RSpec.describe '改善提案の削除', type: :system do
     end
   end
   context '投稿の削除ができないとき' do
-    it 'ログインしたユーザーは自分以外が投稿したツイートの削除ができない' do
+    it 'ログインしたユーザーは自分以外が投稿した改善提案の削除ができない' do
       # 改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
       # 改善提案2に「削除」へのリンクがないことを確認する
