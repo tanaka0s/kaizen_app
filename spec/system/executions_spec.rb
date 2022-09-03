@@ -5,7 +5,7 @@ RSpec.describe '実施済み改善提案の新規投稿', type: :system do
     @user = FactoryBot.create(:user)
     @proposal = FactoryBot.create(:proposal, user_id: @user.id)
     @estimation = FactoryBot.create(:estimation, proposal_id: @proposal.id)
-    @execution = FactoryBot.build(:execution)
+    @execution = FactoryBot.build(:execution, proposal_id: @proposal.id, user_id: @user.id)
   end
   context '新規投稿ができるとき' do
     it 'ログインしたユーザーは実施済み改善提案の新規投稿ができる' do
@@ -93,8 +93,7 @@ RSpec.describe '実施済み改善提案の編集', type: :system do
     @execution1 = FactoryBot.create(:execution, proposal_id: @proposal1.id, user_id: @user1.id)
     @execution2 = FactoryBot.create(:execution, proposal_id: @proposal2.id, user_id: @user2.id)
   end
-
-  context '実施済み改善提案の投稿内容の編集ができるとき' do
+  context '投稿内容の編集ができるとき' do
     it 'ログインしたユーザーは自分が投稿した実施済み改善提案を編集できる' do
       # 実施済み改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
@@ -183,7 +182,7 @@ RSpec.describe '実施済み改善提案の編集', type: :system do
       expect(page).to have_content(beforeCosts - afterCosts)
     end
   end
-  context '実施済み改善提案の投稿内容を編集できないとき' do
+  context '投稿内容を編集できないとき' do
     it 'ログインしたユーザーは自分以外が投稿した実施済み改善提案の編集画面には遷移できない' do
       # 実施済み改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
@@ -194,6 +193,56 @@ RSpec.describe '実施済み改善提案の編集', type: :system do
       expect(
         all('.proposal')[0]
       ).to have_no_link '編集', href: edit_execution_path(@execution2)
+    end
+  end
+end
+
+RSpec.describe '実施済み改善提案の削除', type: :system do
+  before do
+    @user1 = FactoryBot.create(:user)
+    @proposal1 = FactoryBot.create(:proposal, user_id: @user1.id)
+    @estimation1 = FactoryBot.create(:estimation, proposal_id: @proposal1.id)
+    @user2 = FactoryBot.create(:user)
+    @proposal2 = FactoryBot.create(:proposal, user_id: @user2.id)
+    @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
+    @execution1 = FactoryBot.create(:execution, proposal_id: @proposal1.id, user_id: @user1.id)
+    @execution2 = FactoryBot.create(:execution, proposal_id: @proposal2.id, user_id: @user2.id)
+  end
+  context '投稿を削除ができるとき' do
+    it 'ログインしたユーザーは自らが投稿した実施済み改善提案の削除ができる' do
+      # 改善提案1を投稿したユーザーでログインする
+      sign_in(@user1)
+      # 実施済み改善提案一覧ページへ遷移する
+      all('.order')[2].click
+      expect(current_path).to eq(executions_path)
+      # 実施済み改善提案1のタイトル部分をクリックしてアコーディオンを開く
+      all('.execution_title_btn')[1].click
+      sleep 0.5
+      # 改善提案1に「削除」へのリンクがあることを確認する
+      expect(
+        all('.proposal')[1]
+      ).to have_link '削除', href: execution_path(@execution1)
+      # 削除ボタンをクリックするとExecutionモデルとそれに紐づくProposalモデル及びEstimationモデルのレコードの数が1減ることを確認する
+      expect do
+        all('.action_btn')[0].click
+      end.to change { Execution.count & Proposal.count & Estimation.count }.by(-1)
+      # 削除実行後も実施済み改善提案一覧ページにいることを確認する
+      expect(current_path).to eq(executions_path)
+      # 実施済み改善提案一覧ページに改善提案1の内容が存在しないことを確認する
+      expect(page).to have_no_content(@execution1)
+    end
+  end
+  context '投稿の削除ができないとき' do
+    it 'ログインしたユーザーは自分以外が投稿した実施済み改善提案の削除ができない' do
+      # 改善提案1を投稿したユーザーでログインする
+      sign_in(@user1)
+      # 実施済み改善提案一覧ページへ遷移する
+      all('.order')[2].click
+      expect(current_path).to eq(executions_path)
+      # 改善提案2に「削除」へのリンクがないことを確認する
+      expect(
+        all('.proposal')[0]
+      ).to have_no_link '削除', href: execution_path(@execution2)
     end
   end
 end
