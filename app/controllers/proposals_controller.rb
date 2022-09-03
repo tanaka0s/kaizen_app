@@ -35,6 +35,7 @@ class ProposalsController < ApplicationController
 
   def update
     @proposal_estimation = ProposalEstimation.new(proposal_params)
+    @proposal_estimation.image = @proposal.image.blob if @proposal_estimation.image.nil?
     if @proposal_estimation.valid?
       @proposal_estimation.renew(@proposal)
       redirect_to root_path
