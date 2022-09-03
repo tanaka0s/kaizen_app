@@ -34,11 +34,11 @@ RSpec.describe '改善提案の新規投稿', type: :system do
       end.to change { Proposal.count & Estimation.count }.by(1)
       # トップページに遷移することを確認する
       expect(current_path).to eq(root_path)
-      # トップページには先ほど投稿した内容の改善提案のタイトルがあることを確認する
+      # トップページには先ほど投稿した内容があることを確認する
       beforeManHours = (@proposal_estimation.before_seconds * @proposal_estimation.before_workers * @proposal_estimation.before_days / 3600).round(1)
-      beforeCostsCalc = (@proposal_estimation.before_seconds * @proposal_estimation.before_workers * @proposal_estimation.before_days / 360).round
+      beforeCosts = (@proposal_estimation.before_seconds * @proposal_estimation.before_workers * @proposal_estimation.before_days / 3600).round(1) * @proposal_estimation.hourly_wage
       afterManHours = (@proposal_estimation.after_seconds * @proposal_estimation.after_workers * @proposal_estimation.after_days / 3600).round(1)
-      afterCostsCalc = (@proposal_estimation.after_seconds * @proposal_estimation.after_workers * @proposal_estimation.after_days / 360).round
+      afterCosts = (@proposal_estimation.after_seconds * @proposal_estimation.after_workers * @proposal_estimation.after_days / 3600).round(1) * @proposal_estimation.hourly_wage
       expect(page).to have_selector("img[src$='test_image.png']")
       expect(page).to have_content(@proposal_estimation.title)
       expect(page).to have_content(@proposal_estimation.where)
@@ -50,14 +50,14 @@ RSpec.describe '改善提案の新規投稿', type: :system do
       expect(page).to have_content(@proposal_estimation.before_days)
       expect(page).to have_content(beforeManHours)
       expect(page).to have_content(@proposal_estimation.hourly_wage)
-      expect(page).to have_content(beforeCostsCalc * @proposal_estimation.hourly_wage / 10)
+      expect(page).to have_content(beforeCosts)
       expect(page).to have_content(@proposal_estimation.after_seconds)
       expect(page).to have_content(@proposal_estimation.after_workers)
       expect(page).to have_content(@proposal_estimation.after_days)
       expect(page).to have_content(afterManHours)
-      expect(page).to have_content(afterCostsCalc * @proposal_estimation.hourly_wage / 10)
-      expect(page).to have_content((beforeManHours / 10) - (afterManHours / 10))
-      expect(page).to have_content((beforeCostsCalc * @proposal_estimation.hourly_wage / 10) - (afterCostsCalc * @proposal_estimation.hourly_wage / 10))
+      expect(page).to have_content(afterCosts)
+      expect(page).to have_content(beforeManHours - afterManHours)
+      expect(page).to have_content(beforeCosts - afterCosts)
     end
   end
   context '新規投稿ができないとき' do
@@ -107,7 +107,7 @@ RSpec.describe '改善提案の編集', type: :system do
     @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
   end
   context '投稿内容の編集ができるとき' do
-    it 'ログインしたユーザーは自分が投稿した改善提案を編集できる' do
+    it 'ログインしたユーザーは自身が投稿した改善提案を編集できる' do
       # 改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
       # 改善提案1のタイトル部分をクリックしてアコーディオンを開く
@@ -195,9 +195,9 @@ RSpec.describe '改善提案の編集', type: :system do
       expect(current_path).to eq(root_path)
       # トップページには先ほど変更した内容が存在することを確認する
       beforeManHours = ((@proposal1.before_seconds + 1) * (@proposal1.before_workers + 1) * (@proposal1.before_days + 1) / 3600).round(1)
-      beforeCostsCalc = ((@proposal1.before_seconds + 1) * (@proposal1.before_workers + 1) * (@proposal1.before_days + 1) / 360).round
+      beforeCosts = ((@proposal1.before_seconds + 1) * (@proposal1.before_workers + 1) * (@proposal1.before_days + 1) / 3600).round(1) * (@proposal1.hourly_wage + 100)
       afterManHours = ((@proposal1.estimation.after_seconds + 1) * (@proposal1.estimation.after_workers + 1) * (@proposal1.estimation.after_days + 1) / 3600).round(1)
-      afterCostsCalc = ((@proposal1.estimation.after_seconds + 1) * (@proposal1.estimation.after_workers + 1) * (@proposal1.estimation.after_days + 1) / 360).round
+      afterCosts = ((@proposal1.estimation.after_seconds + 1) * (@proposal1.estimation.after_workers + 1) * (@proposal1.estimation.after_days + 1) / 3600).round(1) * (@proposal1.hourly_wage + 100)
       expect(page).to have_selector("img[src$='test_image2.png']")
       expect(page).to have_content("#{@proposal1.title}+編集したテキスト")
       expect(page).to have_content("#{@proposal1.where}+編集したテキスト")
@@ -209,14 +209,15 @@ RSpec.describe '改善提案の編集', type: :system do
       expect(page).to have_content(@proposal1.before_days + 1)
       expect(page).to have_content(beforeManHours)
       expect(page).to have_content(@proposal1.hourly_wage + 100)
-      expect(page).to have_content(beforeCostsCalc * (@proposal1.hourly_wage + 100) / 10)
+      expect(page).to have_content(beforeCosts)
       expect(page).to have_content(@proposal1.estimation.after_seconds + 1)
       expect(page).to have_content(@proposal1.estimation.after_workers + 1)
       expect(page).to have_content(@proposal1.estimation.after_days + 1)
       expect(page).to have_content(afterManHours)
-      expect(page).to have_content(afterCostsCalc * (@proposal1.hourly_wage + 100) / 10)
-      expect(page).to have_content((beforeManHours / 10) - (afterManHours / 10))
-      expect(page).to have_content((beforeCostsCalc * (@proposal1.hourly_wage + 100) / 10) - (afterCostsCalc * (@proposal1.hourly_wage + 100) / 10))
+      expect(page).to have_content(@proposal1.estimation.hourly_wage + 100)
+      expect(page).to have_content(afterCosts)
+      expect(page).to have_content(beforeManHours - afterManHours)
+      expect(page).to have_content(beforeCosts - afterCosts)
     end
   end
   context '投稿内容を編集できないとき' do
@@ -241,7 +242,7 @@ RSpec.describe '改善提案の削除', type: :system do
     @estimation2 = FactoryBot.create(:estimation, proposal_id: @proposal2.id)
   end
   context '投稿を削除ができるとき' do
-    it 'ログインしたユーザーは自らが投稿した改善提案の削除ができる' do
+    it 'ログインしたユーザーは自身が投稿した改善提案の削除ができる' do
       # 改善提案1を投稿したユーザーでログインする
       sign_in(@user1)
       # トップページに遷移することを確認する

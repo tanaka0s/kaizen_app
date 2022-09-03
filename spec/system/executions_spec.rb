@@ -48,6 +48,7 @@ RSpec.describe '実施済み改善提案の新規投稿', type: :system do
       expect(page).to have_content(@execution.after_workers)
       expect(page).to have_content(@execution.after_days)
       expect(page).to have_content(afterManHours)
+      expect(page).to have_content(@execution.hourly_wage)
       expect(page).to have_content(afterCosts)
       expect(page).to have_content(beforeManHours - afterManHours)
       expect(page).to have_content(beforeCosts - afterCosts)
@@ -208,7 +209,7 @@ RSpec.describe '実施済み改善提案の削除', type: :system do
     @execution1 = FactoryBot.create(:execution, proposal_id: @proposal1.id, user_id: @user1.id)
     @execution2 = FactoryBot.create(:execution, proposal_id: @proposal2.id, user_id: @user2.id)
   end
-  context '投稿を削除ができるとき' do
+  context '投稿の削除ができるとき' do
     it 'ログインしたユーザーは自らが投稿した実施済み改善提案の削除ができる' do
       # 改善提案1を投稿したユーザーでログインする
       sign_in(@user1)

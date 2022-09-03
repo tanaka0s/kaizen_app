@@ -6,15 +6,15 @@ FactoryBot.define do
     what  { Faker::Lorem.sentence }
     why   { Faker::Lorem.sentence }
     how   { Faker::Lorem.sentence }
-    before_seconds    { 125 }
+    before_seconds    { 50 }
     before_workers    { 10 }
-    before_days       { 100 }
+    before_days       { 10 }
     before_man_hours  { 10 }
     hourly_wage       { 1000 }
     before_costs      { 1000 }
-    after_seconds     { 25 }
+    after_seconds     { 20 }
     after_workers     { 10 }
-    after_days        { 100 }
+    after_days        { 10 }
     after_man_hours   { 10 }
     after_costs       { 100 }
     reduced_man_hours { 10 }
