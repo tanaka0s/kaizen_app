@@ -46,7 +46,7 @@ https://kaizen-app-innovation.herokuapp.com/
 [こちらから](https://docs.google.com/spreadsheets/d/1aS1AcYL37TOMkTVHraLD-KmpTGn4IxBHTWTSB9Ycu6A/edit#gid=982722306)
 
 # 実施予定の機能
-現在、結合テストコードを記述中  
+現在、検索機能を実装中  
 今後は、非同期通信を用いたコメント投稿機能を実装予定  
 
 # テーブル設計
@@ -144,6 +144,8 @@ https://kaizen-app-innovation.herokuapp.com/
 &emsp;MySQL  
 ・インフラ  
 &emsp;AWS(S3)  
+・テスト(RSpec)  
+&emsp;単体テスト(model),機能テスト(request),結合テスト(system)  
 ・OS  
 &emsp;Mac  
 ・テキストエディタ  
