@@ -10,10 +10,8 @@
     </div>
     <div class="main_contents">
     <% @executions.each_with_index do |execution,i|%>
-      <dl class="accordion js__accordion">
-      <div class="proposal js__accordion__trigger">
-        <dt class="accordion__title">
-        <div class="execution_title_btn" >
+      <div class="proposal js__accordion">
+        <div class="execution_title_btn js__accordion__trigger" >
           <div class="execution_title" >
             <%= execution.proposal.title %>
           </div>
@@ -26,107 +24,105 @@
             </div>
           </div>
         </div>
-        </dt>
         <% if i == 0 %>
-        <dd class="accordion__content is__open">
+        <div class="accordion__content is__open">
         <% else %>
-        <dd class="accordion__content">
+        <div class="accordion__content">
         <% end %>
-        <div class="before_after_character">
-          <div class="before_character">Before(改善前)</div>
-          <div class="after_character">After(改善後)</div>
-        </div>
-        <div class="execution_detail">
-          <div class="before_detail">
-            <div class="execution_image">
-              <%= image_tag execution.proposal.image, class: :image_tag %>
+          <div class="before_after_character">
+            <div class="before_character">Before(改善前)</div>
+            <div class="after_character">After(改善後)</div>
+          </div>
+          <div class="execution_detail">
+            <div class="before_detail">
+              <div class="execution_image">
+                <%= image_tag execution.proposal.image, class: :image_tag %>
+              </div>
+              <div class="execution_text_all">
+                <div class="text">
+                <span>Where</span><br>
+                <%= execution.proposal.where %>
+                </div>
+                <div class="text">
+                <span>What</span><br>
+                <%= execution.proposal.what %>
+                </div>
+                <div class="text">
+                <span>Why</span><br>
+                <%= execution.proposal.why %>
+                </div>
+                <div class="text">
+                <span>How</span><br>
+                <%= execution.proposal.how %>
+                </div>
+              </div>
             </div>
-            <div class="execution_text_all">
-              <div class="text">
-              <span>Where</span><br>
-              <%= execution.proposal.where %>
+            <div class="after_detail">
+              <div class="execution_image">
+                <%= image_tag execution.image, class: :image_tag %>
               </div>
-              <div class="text">
-              <span>What</span><br>
-              <%= execution.proposal.what %>
-              </div>
-              <div class="text">
-              <span>Why</span><br>
-              <%= execution.proposal.why %>
-              </div>
-              <div class="text">
-              <span>How</span><br>
-              <%= execution.proposal.how %>
+              <div class="execution_text_all">
+                <div class="text">
+                <span>Where</span><br>
+                <%= execution.where %>
+                </div>
+                <div class="text">
+                <span>What</span><br>
+                <%= execution.what %>
+                </div>
+                <div class="text">
+                <span>Why</span><br>
+                <%= execution.why %>
+                </div>
+                <div class="text">
+                <span>How</span><br>
+                <%= execution.how %>
+                </div>
               </div>
             </div>
           </div>
-          <div class="after_detail">
-            <div class="execution_image">
-              <%= image_tag execution.image, class: :image_tag %>
-            </div>
-            <div class="execution_text_all">
-              <div class="text">
-              <span>Where</span><br>
-              <%= execution.where %>
-              </div>
-              <div class="text">
-              <span>What</span><br>
-              <%= execution.what %>
-              </div>
-              <div class="text">
-              <span>Why</span><br>
-              <%= execution.why %>
-              </div>
-              <div class="text">
-              <span>How</span><br>
-              <%= execution.how %>
-              </div>
-            </div>
+          <div class="bottom_before_character">Before(改善前)</div>
+          <div class="before_calc">
+            <div class="numeric">作業時間<%= execution.proposal.before_seconds %>s</div>
+            <span>x</span>
+            <div class="numeric">作業人数<%= execution.proposal.before_workers %>人</div>
+            <span>x</span>
+            <div class="numeric">年間使用日数<%= execution.proposal.before_days %>日</div>
+            <span>=</span>
+            <div class="numeric">年間工数<%= execution.proposal.before_man_hours %>h</div>
+            <span>x</span>
+            <div class="numeric">時給<%= execution.proposal.hourly_wage %>円</div>
+            <span>=</span>
+            <div class="numeric">年間コスト<%= execution.proposal.before_costs %>円</div>
+          </div>
+          <div class="arrow">⬇</div>
+          <div class="bottom_after_character">After(改善後)</div>
+          <div class="after_calc">
+            <div class="numeric">作業時間<%= execution.after_seconds %>s</div>
+            <span>x</span>
+            <div class="numeric">作業人数<%= execution.after_workers %>人</div>
+            <span>x</span>
+            <div class="numeric">年間使用日数<%= execution.after_days %>日</div>
+            <span>=</span>
+            <div class="numeric">年間工数<%= execution.after_man_hours %>h</div>
+            <span>x</span>
+            <div class="numeric">時給<%= execution.hourly_wage %>円</div>
+            <span>=</span>
+            <div class="numeric">年間コスト<%= execution.after_costs %>円</div>
+          </div>
+          <div class="arrow">⬇</div>
+          <div class="calc_result">
+            <div class="reduced_man_hours">年間削減工数<%= execution.reduced_man_hours %>h</div>
+            <div class="reduced_costs">年間削減コスト<%= execution.reduced_costs %>円</div>
+          </div>
+          <div class="various_btn">
+          <% if current_user == execution.user%>
+            <%= link_to "削除", execution_path(execution), method: :delete , class: :action_btn%>
+            <%= link_to "編集", edit_execution_path(execution), class: :action_btn%>
+          <% end %>
           </div>
         </div>
-        <div class="bottom_before_character">Before(改善前)</div>
-        <div class="before_calc">
-          <div class="numeric">作業時間<%= execution.proposal.before_seconds %>s</div>
-          <span>x</span>
-          <div class="numeric">作業人数<%= execution.proposal.before_workers %>人</div>
-          <span>x</span>
-          <div class="numeric">年間使用日数<%= execution.proposal.before_days %>日</div>
-          <span>=</span>
-          <div class="numeric">年間工数<%= execution.proposal.before_man_hours %>h</div>
-          <span>x</span>
-          <div class="numeric">時給<%= execution.proposal.hourly_wage %>円</div>
-          <span>=</span>
-          <div class="numeric">年間コスト<%= execution.proposal.before_costs %>円</div>
-        </div>
-        <div class="arrow">⬇</div>
-        <div class="bottom_after_character">After(改善後)</div>
-        <div class="after_calc">
-          <div class="numeric">作業時間<%= execution.after_seconds %>s</div>
-          <span>x</span>
-          <div class="numeric">作業人数<%= execution.after_workers %>人</div>
-          <span>x</span>
-          <div class="numeric">年間使用日数<%= execution.after_days %>日</div>
-          <span>=</span>
-          <div class="numeric">年間工数<%= execution.after_man_hours %>h</div>
-          <span>x</span>
-          <div class="numeric">時給<%= execution.hourly_wage %>円</div>
-          <span>=</span>
-          <div class="numeric">年間コスト<%= execution.after_costs %>円</div>
-        </div>
-        <div class="arrow">⬇</div>
-        <div class="calc_result">
-          <div class="reduced_man_hours">年間削減工数<%= execution.reduced_man_hours %>h</div>
-          <div class="reduced_costs">年間削減コスト<%= execution.reduced_costs %>円</div>
-        </div>
-        <div class="various_btn">
-        <% if current_user == execution.user%>
-          <%= link_to "削除", execution_path(execution), method: :delete , class: :action_btn%>
-          <%= link_to "編集", edit_execution_path(execution), class: :action_btn%>
-        <% end %>
-        </div>
-        </dd>
       </div>
-      </dl>
     <% end %>
     </div>
   </div>

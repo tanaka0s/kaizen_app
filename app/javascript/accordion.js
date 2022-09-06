@@ -76,7 +76,7 @@ window.addEventListener("load", ()=> {
       // Triggerにクリックイベントを付与
       trigger.addEventListener("click", () => {
       // 開閉させる要素を取得
-      const content = trigger.querySelector(".accordion__content");
+      const content = accordion.querySelector(".accordion__content");
       // 要素を展開or閉じる
       slideToggle(content);
       });
