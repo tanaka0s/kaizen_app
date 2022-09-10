@@ -8,6 +8,8 @@ class ProposalsController < ApplicationController
                  else
                    Proposal.includes(:user, :estimation).order('updated_at DESC')
                  end
+    @comments = @proposal.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def new

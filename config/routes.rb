@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "proposals#index"
   resources :proposals, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :executions, only: [:new, :create]
+    resources :comments, only: :create
   end
   resources :executions, only: [:index, :edit, :update, :destroy]
 end

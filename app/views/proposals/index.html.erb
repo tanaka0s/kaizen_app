@@ -52,6 +52,9 @@
             </div>
             <div class ="comments">
             <span>Comments</span><br>
+                <%= form_with model: [proposal, @comment], id: "comment-form" do |f| %>
+                <%= f.text_area :text , class: "comment-text"%>
+                <%= f.submit "コメントをする", class: "comment-submit" %>
             </div>
           </div>
           <div class="bottom_before_character">Before(改善前)</div>
