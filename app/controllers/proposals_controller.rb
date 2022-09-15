@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [:edit, :update]
+  before_action :set_proposal, only: [:edit, :update, :show]
   before_action :move_to_index, only: :edit
 
   def index
@@ -8,8 +8,6 @@ class ProposalsController < ApplicationController
                  else
                    Proposal.includes(:user, :estimation).order('updated_at DESC')
                  end
-    @comments = @proposal.comments.includes(:user)
-    @comment = Comment.new
   end
 
   def new
@@ -53,6 +51,11 @@ class ProposalsController < ApplicationController
       proposal.image.purge
       redirect_to root_path
     end
+  end
+
+  def show
+    @comment = Comment.new
+    @comments = @proposal.comments
   end
 
   private

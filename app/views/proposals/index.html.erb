@@ -51,10 +51,10 @@
               </div>
             </div>
             <div class ="comments">
-            <span>Comments</span><br>
-                <%= form_with model: [proposal, @comment], id: "comment-form" do |f| %>
-                <%= f.text_area :text , class: "comment-text"%>
-                <%= f.submit "コメントをする", class: "comment-submit" %>
+              <span>Comments</span><br>
+              <%= proposal.comments %>
+
+              <%= link_to "コメントする", proposal_path(proposal) , class: :action_btn %>
             </div>
           </div>
           <div class="bottom_before_character">Before(改善前)</div>
